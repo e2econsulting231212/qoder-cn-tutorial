@@ -1,0 +1,2132 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <meta name="description" content="基于 5 段完整实操视频整理的 Qoder / QoderWork CN 图文教程，涵盖下载安装、注册登录、Credits、模型、语音任务、本地项目、IDE 排错与 CLI。">
+  <link rel="canonical" href="https://e2econsulting231212.github.io/qoder-cn-tutorial/">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Qoder / QoderWork CN 完整视频＋图文教程">
+  <meta property="og:description" content="5 段视频可在线播放，11 个图文章节可按需展开。">
+  <meta property="og:url" content="https://e2econsulting231212.github.io/qoder-cn-tutorial/">
+  <meta property="og:image" content="https://e2econsulting231212.github.io/qoder-cn-tutorial/assets/32_browser_success.jpg">
+  <title>Qoder / QoderWork CN 完整视频＋图文教程｜5 段实操录屏</title>
+  <style>
+    :root {
+      --ink: #e9f0e8;
+      --muted: #9eaa9f;
+      --paper: #0b0e0c;
+      --panel: #121713;
+      --panel-2: #182019;
+      --line: rgba(204, 234, 207, .14);
+      --line-strong: rgba(164, 255, 151, .36);
+      --green: #83f28f;
+      --green-2: #b9ff84;
+      --blue: #84c8ff;
+      --amber: #ffd166;
+      --red: #ff8f87;
+      --max: 1180px;
+      --sidebar: 264px;
+      --shadow: 0 28px 80px rgba(0, 0, 0, .42);
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; scroll-padding-top: 26px; }
+    body {
+      margin: 0;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at 72% 0%, rgba(70, 180, 92, .12), transparent 30rem),
+        linear-gradient(rgba(255,255,255,.018) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.018) 1px, transparent 1px),
+        var(--paper);
+      background-size: auto, 32px 32px, 32px 32px, auto;
+      font-family: "Microsoft YaHei UI", "Noto Sans CJK SC", "PingFang SC", sans-serif;
+      line-height: 1.78;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a { color: var(--green); text-decoration-thickness: 1px; text-underline-offset: 4px; }
+    button, input { font: inherit; }
+    code, pre, .eyebrow, .time, .metric strong, .chapter-no, .tag, .toc-progress {
+      font-family: "Cascadia Code", "JetBrains Mono", "SFMono-Regular", Consolas, monospace;
+    }
+    img { display: block; max-width: 100%; }
+
+    .reading-progress {
+      position: fixed;
+      z-index: 50;
+      inset: 0 0 auto 0;
+      height: 3px;
+      background: rgba(255,255,255,.04);
+    }
+    .reading-progress span {
+      display: block;
+      width: 0;
+      height: 100%;
+      background: linear-gradient(90deg, var(--green), var(--green-2));
+      box-shadow: 0 0 20px rgba(131,242,143,.65);
+    }
+
+    .hero {
+      position: relative;
+      overflow: hidden;
+      min-height: 690px;
+      border-bottom: 1px solid var(--line);
+      display: grid;
+      place-items: center;
+    }
+    .hero::before {
+      content: "";
+      position: absolute;
+      width: 620px;
+      height: 620px;
+      right: -180px;
+      top: -210px;
+      border: 1px solid rgba(131,242,143,.18);
+      border-radius: 50%;
+      box-shadow: 0 0 0 70px rgba(131,242,143,.025), 0 0 0 140px rgba(131,242,143,.018);
+    }
+    .hero-inner {
+      position: relative;
+      z-index: 1;
+      width: min(var(--max), calc(100% - 40px));
+      padding: 92px 0 72px;
+      display: grid;
+      grid-template-columns: minmax(0, 1.12fr) minmax(340px, .88fr);
+      gap: 56px;
+      align-items: center;
+    }
+    .eyebrow {
+      color: var(--green);
+      text-transform: uppercase;
+      letter-spacing: .16em;
+      font-size: 12px;
+      margin: 0 0 18px;
+    }
+    h1, h2, h3, h4 { margin: 0; line-height: 1.18; }
+    h1 {
+      max-width: 760px;
+      font-family: "STZhongsong", "FZYaoti", "Microsoft YaHei UI", serif;
+      font-size: clamp(48px, 6vw, 78px);
+      font-weight: 700;
+      letter-spacing: -.045em;
+    }
+    h1 > span, h1 em { display: block; white-space: nowrap; }
+    h1 em {
+      color: var(--green);
+      font-style: normal;
+      text-shadow: 0 0 36px rgba(131,242,143,.18);
+    }
+    .hero-lede {
+      max-width: 720px;
+      margin: 24px 0 0;
+      color: #c1cbc1;
+      font-size: 18px;
+    }
+    .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 34px; }
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 46px;
+      padding: 0 19px;
+      border: 1px solid var(--line-strong);
+      border-radius: 2px;
+      color: var(--ink);
+      background: rgba(131,242,143,.06);
+      text-decoration: none;
+      font-weight: 700;
+      transition: transform .2s ease, background .2s ease, border-color .2s ease;
+    }
+    .button.primary { color: #071108; background: var(--green); border-color: var(--green); }
+    .button:hover { transform: translateY(-2px); background: rgba(131,242,143,.13); }
+    .button.primary:hover { background: var(--green-2); }
+
+    .metrics {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      margin-top: 42px;
+      border: 1px solid var(--line);
+      background: var(--line);
+    }
+    .metric { background: rgba(9,13,10,.9); padding: 17px 18px; }
+    .metric strong { display: block; color: var(--green); font-size: 24px; line-height: 1; }
+    .metric span { display: block; margin-top: 8px; color: var(--muted); font-size: 12px; }
+
+    .hero-visual {
+      position: relative;
+      padding: 18px;
+      border: 1px solid var(--line-strong);
+      background: rgba(20,28,21,.62);
+      box-shadow: var(--shadow);
+      transform: rotate(1.25deg);
+    }
+    .hero-visual::before {
+      content: "REC / 05";
+      position: absolute;
+      z-index: 2;
+      top: -13px;
+      left: 18px;
+      padding: 3px 10px;
+      color: #071108;
+      background: var(--green);
+      font: 700 11px/1.6 "Cascadia Code", monospace;
+      letter-spacing: .08em;
+    }
+    .hero-visual img { width: 100%; aspect-ratio: 960/608; object-fit: cover; filter: saturate(.86) contrast(1.04); }
+    .hero-visual figcaption { margin-top: 12px; color: var(--muted); font-size: 12px; }
+
+    .layout {
+      width: min(1440px, 100%);
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: var(--sidebar) minmax(0, var(--max));
+      gap: 56px;
+      justify-content: center;
+      padding: 60px 28px 100px;
+    }
+    .sidebar { position: relative; }
+    .toc {
+      position: sticky;
+      top: 24px;
+      max-height: calc(100vh - 48px);
+      overflow: auto;
+      border: 1px solid var(--line);
+      background: rgba(12,16,13,.88);
+      backdrop-filter: blur(18px);
+      padding: 18px;
+    }
+    .toc-title { display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px; }
+    .toc-title strong { font-size: 14px; }
+    .toc-progress { color: var(--green); font-size: 11px; }
+    .toc-meter { height: 4px; background: rgba(255,255,255,.06); margin-bottom: 17px; }
+    .toc-meter span { display: block; height: 100%; width: 0; background: var(--green); transition: width .25s ease; }
+    .toc nav { display: grid; gap: 4px; }
+    .toc a {
+      display: grid;
+      grid-template-columns: 30px 1fr;
+      gap: 7px;
+      padding: 8px 9px;
+      color: var(--muted);
+      text-decoration: none;
+      border-left: 2px solid transparent;
+      font-size: 13px;
+    }
+    .toc a span:first-child { color: #5e6c60; font-family: "Cascadia Code", monospace; }
+    .toc a:hover, .toc a.active { color: var(--ink); background: rgba(131,242,143,.05); border-color: var(--green); }
+    .toc-note { margin: 17px 0 0; padding-top: 14px; border-top: 1px solid var(--line); color: var(--muted); font-size: 11px; }
+    .mobile-toc { display: none; }
+
+    main { min-width: 0; }
+    .chapter {
+      position: relative;
+      margin-bottom: 104px;
+      scroll-margin-top: 24px;
+    }
+    .chapter-head {
+      display: grid;
+      grid-template-columns: 74px minmax(0, 1fr);
+      gap: 24px;
+      align-items: start;
+      margin-bottom: 34px;
+      padding-bottom: 25px;
+      border-bottom: 1px solid var(--line);
+    }
+    .chapter-no {
+      display: grid;
+      place-items: center;
+      width: 58px;
+      height: 58px;
+      color: var(--green);
+      border: 1px solid var(--line-strong);
+      font-size: 18px;
+    }
+    .chapter h2 {
+      font-family: "STZhongsong", "FZYaoti", "Microsoft YaHei UI", serif;
+      font-size: clamp(32px, 4.2vw, 52px);
+      letter-spacing: -.025em;
+    }
+    .chapter-intro { max-width: 810px; margin: 12px 0 0; color: var(--muted); }
+    .chapter-meta { margin-top: 12px; display: flex; flex-wrap: wrap; gap: 8px; }
+    .tag {
+      padding: 3px 8px;
+      border: 1px solid var(--line);
+      color: #afbaaf;
+      background: rgba(255,255,255,.02);
+      font-size: 11px;
+    }
+
+    h3 { margin: 52px 0 18px; font-size: 26px; }
+    h4 { margin: 28px 0 11px; font-size: 18px; }
+    p { margin: 0 0 16px; }
+    .muted { color: var(--muted); }
+    .lead { font-size: 19px; color: #cbd5cb; }
+    .kicker { color: var(--green); font-weight: 700; }
+
+    .summary-grid, .card-grid, .figure-grid, .prompt-grid, .glossary-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 18px;
+    }
+    .summary-card, .info-card, .prompt-card, .glossary-card {
+      border: 1px solid var(--line);
+      background: linear-gradient(145deg, rgba(24,32,25,.85), rgba(13,17,14,.9));
+      padding: 24px;
+    }
+    .summary-card { min-height: 240px; position: relative; overflow: hidden; }
+    .summary-card::after {
+      content: attr(data-index);
+      position: absolute;
+      right: 14px;
+      bottom: -28px;
+      color: rgba(131,242,143,.045);
+      font: 900 118px/1 "Cascadia Code", monospace;
+    }
+    .summary-card .time { color: var(--green); font-size: 12px; }
+    .summary-card h3 { margin: 13px 0 12px; font-size: 21px; }
+    .summary-card p { position: relative; z-index: 1; color: #adb8ae; font-size: 14px; }
+    .summary-card ul { position: relative; z-index: 1; color: #c6cec6; font-size: 13px; }
+
+    .route {
+      margin: 28px 0;
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      border: 1px solid var(--line);
+      background: var(--line);
+      gap: 1px;
+    }
+    .route div { position: relative; min-height: 114px; background: var(--panel); padding: 18px 16px; }
+    .route div:not(:last-child)::after { content: "→"; position: absolute; z-index: 2; right: -10px; top: 43px; color: var(--green); }
+    .route strong { display: block; color: var(--green); font: 700 12px/1.2 "Cascadia Code", monospace; }
+    .route span { display: block; margin-top: 9px; font-size: 13px; line-height: 1.5; }
+
+    .callout {
+      margin: 24px 0;
+      padding: 18px 20px;
+      border-left: 3px solid var(--green);
+      background: rgba(131,242,143,.055);
+      color: #c7d1c8;
+    }
+    .callout strong { color: var(--green); }
+    .callout.warning { border-color: var(--amber); background: rgba(255,209,102,.055); }
+    .callout.warning strong { color: var(--amber); }
+    .callout.danger { border-color: var(--red); background: rgba(255,143,135,.055); }
+    .callout.danger strong { color: var(--red); }
+    .callout.evidence { border-color: var(--blue); background: rgba(132,200,255,.05); }
+    .callout.evidence strong { color: var(--blue); }
+
+    .step-list { display: grid; gap: 16px; counter-reset: tutorial-step; }
+    .step {
+      counter-increment: tutorial-step;
+      display: grid;
+      grid-template-columns: 42px minmax(0, 1fr) auto;
+      gap: 16px;
+      align-items: start;
+      padding: 20px;
+      border: 1px solid var(--line);
+      background: rgba(18,23,19,.78);
+    }
+    .step::before {
+      content: counter(tutorial-step, decimal-leading-zero);
+      display: grid;
+      place-items: center;
+      width: 40px;
+      height: 40px;
+      color: #081009;
+      background: var(--green);
+      font: 800 13px/1 "Cascadia Code", monospace;
+    }
+    .step h4 { margin: 1px 0 6px; }
+    .step p { margin: 0; color: #b8c2b9; font-size: 14px; }
+    .step-check {
+      width: 24px;
+      height: 24px;
+      margin: 7px 0 0;
+      accent-color: var(--green);
+      cursor: pointer;
+    }
+    .step:has(.step-check:checked) { border-color: rgba(131,242,143,.34); background: rgba(131,242,143,.045); }
+
+    figure { margin: 0; }
+    .shot {
+      position: relative;
+      overflow: hidden;
+      border: 1px solid var(--line);
+      background: #090c0a;
+      box-shadow: 0 18px 50px rgba(0,0,0,.24);
+    }
+    .shot img {
+      width: 100%;
+      aspect-ratio: 960 / 600;
+      object-fit: cover;
+      cursor: zoom-in;
+      transition: transform .45s cubic-bezier(.2,.7,.2,1), filter .35s ease;
+    }
+    .shot:hover img { transform: scale(1.012); filter: brightness(1.04); }
+    .shot figcaption {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 11px;
+      align-items: start;
+      min-height: 70px;
+      padding: 14px 16px;
+      color: #aeb8af;
+      border-top: 1px solid var(--line);
+      font-size: 12px;
+    }
+    .shot figcaption b {
+      display: inline-grid;
+      place-items: center;
+      min-width: 30px;
+      height: 23px;
+      padding: 0 6px;
+      color: #071108;
+      background: var(--green);
+      font: 800 10px/1 "Cascadia Code", monospace;
+    }
+    .figure-wide { margin: 24px 0; }
+    .figure-grid { margin: 22px 0; }
+
+    .table-wrap { overflow: auto; margin: 24px 0; border: 1px solid var(--line); }
+    table { width: 100%; border-collapse: collapse; min-width: 680px; }
+    th, td { padding: 14px 16px; border-bottom: 1px solid var(--line); text-align: left; vertical-align: top; }
+    th { color: var(--green); background: rgba(131,242,143,.045); font-size: 12px; letter-spacing: .04em; }
+    td { color: #bcc6bc; font-size: 13px; }
+    tr:last-child td { border-bottom: 0; }
+    td strong { color: var(--ink); }
+
+    .code-block {
+      position: relative;
+      margin: 18px 0;
+      border: 1px solid var(--line-strong);
+      background: #060907;
+    }
+    .code-label { padding: 8px 14px; border-bottom: 1px solid var(--line); color: var(--muted); font: 11px/1.5 "Cascadia Code", monospace; }
+    pre { overflow: auto; margin: 0; padding: 20px 58px 20px 18px; color: #d7f8d9; font-size: 13px; line-height: 1.7; white-space: pre-wrap; word-break: break-word; }
+    .copy-button {
+      position: absolute;
+      right: 10px;
+      top: 10px;
+      border: 1px solid var(--line-strong);
+      color: var(--ink);
+      background: #111712;
+      padding: 6px 9px;
+      cursor: pointer;
+      font-size: 11px;
+    }
+    .copy-button:hover { color: #061008; background: var(--green); }
+
+    ul, ol { padding-left: 1.35em; }
+    li { margin: 7px 0; }
+    .checklist { list-style: none; padding: 0; display: grid; gap: 9px; }
+    .checklist li { position: relative; padding-left: 28px; margin: 0; }
+    .checklist li::before { content: "✓"; position: absolute; left: 0; color: var(--green); font-weight: 900; }
+
+    .prompt-card h4, .glossary-card h4 { margin: 0 0 10px; color: var(--green); }
+    .prompt-card p, .glossary-card p { color: #acb7ad; font-size: 13px; }
+    .prompt-card .code-block { margin-bottom: 0; }
+    .glossary-grid { grid-template-columns: repeat(3, minmax(0,1fr)); }
+
+    details {
+      border: 1px solid var(--line);
+      background: rgba(17,23,18,.72);
+      margin: 10px 0;
+    }
+    summary { cursor: pointer; padding: 15px 18px; color: var(--ink); font-weight: 700; }
+    details > div { padding: 0 18px 17px; color: #b5c0b6; }
+
+    .footer {
+      border-top: 1px solid var(--line);
+      padding: 52px 20px 70px;
+      text-align: center;
+      color: var(--muted);
+      font-size: 12px;
+    }
+    .footer strong { display: block; margin-bottom: 8px; color: var(--ink); font-size: 17px; }
+
+    .lightbox {
+      position: fixed;
+      z-index: 100;
+      inset: 0;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 36px;
+      background: rgba(0,0,0,.92);
+      backdrop-filter: blur(12px);
+    }
+    .lightbox.open { display: flex; }
+    .lightbox-inner { max-width: min(1400px, 96vw); max-height: 92vh; }
+    .lightbox img { max-height: 82vh; margin: auto; border: 1px solid rgba(255,255,255,.18); box-shadow: var(--shadow); }
+    .lightbox p { margin: 12px 0 0; color: #c7d0c7; text-align: center; font-size: 13px; }
+    .lightbox-close {
+      position: fixed;
+      right: 22px;
+      top: 18px;
+      width: 42px;
+      height: 42px;
+      border: 1px solid rgba(255,255,255,.25);
+      color: white;
+      background: rgba(0,0,0,.55);
+      cursor: pointer;
+      font-size: 24px;
+    }
+
+    @media (max-width: 1100px) {
+      .hero-inner { grid-template-columns: 1fr; }
+      .hero-visual { max-width: 720px; transform: none; }
+      .layout { grid-template-columns: 1fr; padding-top: 28px; }
+      .sidebar { display: none; }
+      .mobile-toc {
+        display: block;
+        position: sticky;
+        z-index: 30;
+        top: 10px;
+        width: 100%;
+        margin-bottom: 32px;
+        border: 1px solid var(--line-strong);
+        color: var(--ink);
+        background: rgba(12,17,13,.94);
+        padding: 12px 14px;
+        text-align: left;
+      }
+    }
+    @media (max-width: 760px) {
+      .hero { min-height: auto; }
+      .hero-inner { width: min(100% - 28px, var(--max)); padding: 72px 0 52px; gap: 36px; }
+      h1 { font-size: clamp(40px, 13vw, 54px); }
+      h1 > span { font-size: .82em; }
+      .hero-lede { font-size: 16px; }
+      .metrics, .summary-grid, .card-grid, .figure-grid, .prompt-grid, .glossary-grid { grid-template-columns: 1fr; }
+      .layout { padding-inline: 14px; }
+      .chapter { margin-bottom: 76px; }
+      .chapter-head { grid-template-columns: 52px 1fr; gap: 13px; }
+      .chapter-no { width: 46px; height: 46px; }
+      .chapter h2 { font-size: 34px; }
+      .route { grid-template-columns: 1fr; }
+      .route div { min-height: auto; }
+      .route div:not(:last-child)::after { content: "↓"; top: auto; right: 20px; bottom: -17px; }
+      .step { grid-template-columns: 38px minmax(0,1fr); }
+      .step-check { grid-column: 2; }
+      .shot figcaption { grid-template-columns: 1fr; }
+      .lightbox { padding: 12px; }
+    }
+
+    /* ──────────────────────────────────────────────────────────
+       EDITORIAL REDESIGN — warm print journal, independent of
+       the product's dark / neon visual language.
+       ────────────────────────────────────────────────────────── */
+    :root {
+      --ink: #172536;
+      --muted: #66717c;
+      --paper: #f3eee3;
+      --panel: #fffdf7;
+      --panel-2: #e8eff5;
+      --line: rgba(23, 37, 54, .17);
+      --line-strong: rgba(35, 83, 132, .48);
+      --green: #235384;
+      --green-2: #d65b3b;
+      --blue: #2e7097;
+      --amber: #c68a19;
+      --red: #b9433e;
+      --shadow: 0 24px 64px rgba(44, 49, 52, .14);
+    }
+
+    html { color-scheme: light; }
+    body {
+      color: var(--ink);
+      background:
+        radial-gradient(circle at 9% 4%, rgba(214, 91, 59, .11), transparent 22rem),
+        radial-gradient(circle at 94% 18%, rgba(35, 83, 132, .10), transparent 27rem),
+        repeating-linear-gradient(0deg, rgba(23,37,54,.022) 0, rgba(23,37,54,.022) 1px, transparent 1px, transparent 30px),
+        var(--paper);
+      font-family: "Microsoft YaHei UI", "PingFang SC", "Noto Sans CJK SC", sans-serif;
+    }
+    body::before {
+      content: "";
+      position: fixed;
+      z-index: -1;
+      inset: 0;
+      pointer-events: none;
+      opacity: .22;
+      background-image: radial-gradient(rgba(20,34,48,.18) .55px, transparent .7px);
+      background-size: 6px 6px;
+      mix-blend-mode: multiply;
+    }
+    a { color: var(--green); }
+    :focus-visible { outline: 3px solid var(--green-2); outline-offset: 3px; }
+    .reading-progress { background: rgba(23,37,54,.12); }
+    .reading-progress span {
+      background: linear-gradient(90deg, var(--green), #477ea9 55%, var(--green-2));
+      box-shadow: none;
+    }
+
+    .hero {
+      min-height: 650px;
+      color: var(--ink);
+      background:
+        linear-gradient(90deg, transparent 0 63%, rgba(35,83,132,.055) 63% 64%, transparent 64%),
+        linear-gradient(135deg, #f9f4e9 0%, #efe6d6 100%);
+      border-bottom: 5px solid var(--green-2);
+    }
+    .hero::before {
+      width: 580px;
+      height: 580px;
+      right: -150px;
+      top: -235px;
+      border: 2px solid rgba(35,83,132,.17);
+      box-shadow: 0 0 0 58px rgba(35,83,132,.026), 0 0 0 116px rgba(214,91,59,.025);
+    }
+    .hero::after {
+      content: "05";
+      position: absolute;
+      left: max(22px, calc((100vw - var(--max)) / 2 - 82px));
+      bottom: -56px;
+      color: rgba(35,83,132,.055);
+      font: 900 clamp(180px, 24vw, 350px)/.8 "Georgia", serif;
+      letter-spacing: -.12em;
+    }
+    .hero-inner { padding: 82px 0 68px; gap: 64px; }
+    .eyebrow { color: var(--green-2); font-weight: 800; letter-spacing: .10em; }
+    h1 {
+      color: #18344f;
+      font-family: "STSong", "Songti SC", "SimSun", serif;
+      font-weight: 900;
+      letter-spacing: -.06em;
+    }
+    h1 em {
+      color: var(--green-2);
+      text-shadow: none;
+    }
+    .hero-lede { color: #4e5b67; }
+    .button {
+      border-color: rgba(35,83,132,.42);
+      color: var(--green);
+      background: rgba(255,253,247,.58);
+      border-radius: 999px;
+      box-shadow: 0 6px 16px rgba(35,83,132,.06);
+    }
+    .button.primary {
+      color: white;
+      background: var(--green-2);
+      border-color: var(--green-2);
+    }
+    .button:hover { background: white; border-color: var(--green); }
+    .button.primary:hover { color: white; background: #b9472c; }
+    .metrics {
+      gap: 12px;
+      border: 0;
+      background: transparent;
+    }
+    .metric {
+      position: relative;
+      overflow: hidden;
+      background: rgba(255,253,247,.84);
+      border: 1px solid var(--line);
+      border-radius: 4px;
+      box-shadow: 0 10px 25px rgba(46,49,48,.06);
+    }
+    .metric::before { content: ""; position: absolute; inset: 0 auto 0 0; width: 4px; background: var(--green); }
+    .metric:nth-child(2)::before { background: #d5a02a; }
+    .metric:nth-child(3)::before { background: var(--green-2); }
+    .metric strong { color: var(--green); }
+    .metric span { color: #65717b; }
+    .hero-visual {
+      padding: 14px 14px 18px;
+      border: 1px solid rgba(23,37,54,.22);
+      background: #fffdf7;
+      box-shadow: 18px 22px 0 rgba(35,83,132,.10), var(--shadow);
+      transform: rotate(-1.1deg);
+    }
+    .hero-visual::before {
+      content: "实操截图 / 05";
+      color: white;
+      background: var(--green-2);
+    }
+    .hero-visual img { filter: saturate(.76) contrast(1.03); }
+    .hero-visual figcaption { color: #66717c; }
+
+    .layout { gap: 48px; padding-top: 46px; }
+    .toc {
+      border: 1px solid rgba(23,37,54,.18);
+      background: rgba(255,253,247,.92);
+      box-shadow: 8px 10px 0 rgba(35,83,132,.07);
+      backdrop-filter: blur(14px);
+    }
+    .toc-title strong { color: #18344f; font-family: "STSong", "SimSun", serif; font-size: 16px; }
+    .toc-progress { color: var(--green-2); }
+    .toc-meter { background: rgba(23,37,54,.09); }
+    .toc-meter span { background: linear-gradient(90deg, var(--green), var(--green-2)); }
+    .toc a { color: #6a747d; }
+    .toc a span:first-child { color: #9b856e; }
+    .toc a:hover, .toc a.active {
+      color: #17324d;
+      background: #edf2f5;
+      border-color: var(--green-2);
+    }
+    .toc-note { color: #7b746b; }
+
+    .reading-tools {
+      position: sticky;
+      z-index: 24;
+      top: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      margin: 0 0 36px;
+      padding: 12px 14px 12px 18px;
+      color: var(--ink);
+      border: 1px solid rgba(23,37,54,.18);
+      border-left: 5px solid var(--green-2);
+      background: rgba(255,253,247,.92);
+      box-shadow: 0 10px 34px rgba(34,42,48,.10);
+      backdrop-filter: blur(16px);
+    }
+    .reading-tools-label { display: grid; gap: 2px; }
+    .reading-tools-label span { color: var(--green-2); font: 800 11px/1.2 "Microsoft YaHei UI", sans-serif; letter-spacing: .08em; }
+    .reading-tools-label strong { color: #344454; font-size: 12px; }
+    .reading-tools-actions { display: flex; flex-wrap: wrap; gap: 7px; }
+    .mode-button, .chapter-toggle {
+      border: 1px solid rgba(35,83,132,.28);
+      color: #34506b;
+      background: #fffdf7;
+      border-radius: 999px;
+      padding: 7px 12px;
+      cursor: pointer;
+      font-size: 12px;
+      font-weight: 700;
+      transition: transform .18s ease, color .18s ease, background .18s ease;
+    }
+    .mode-button:hover, .chapter-toggle:hover { transform: translateY(-1px); border-color: var(--green); }
+    .mode-button.active { color: white; border-color: var(--green); background: var(--green); }
+    .print-button { color: #8e402e; border-color: rgba(214,91,59,.35); }
+
+    .chapter { margin-bottom: 82px; scroll-margin-top: 100px; }
+    .chapter.collapsed { margin-bottom: 18px; }
+    .chapter.collapsed .chapter-head { min-height: 82px; margin-bottom: 0; padding-top: 13px; padding-bottom: 13px; border-bottom-color: rgba(35,83,132,.18); }
+    .chapter.collapsed .chapter-intro, .chapter.collapsed .chapter-meta { display: none; }
+    .chapter.collapsed h2 { font-size: 28px; }
+    .chapter.collapsed .chapter-no { width: 42px; height: 42px; font-size: 14px; }
+    .chapter-body { display: block; animation: reveal-body .32s ease both; }
+    .chapter.collapsed .chapter-body { display: none; }
+    @keyframes reveal-body { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+    .chapter-head {
+      position: relative;
+      cursor: pointer;
+      grid-template-columns: 66px minmax(0, 1fr) auto;
+      padding: 22px 70px 24px 18px;
+      margin-bottom: 34px;
+      border: 1px solid rgba(23,37,54,.17);
+      border-left: 5px solid var(--green);
+      background: rgba(255,253,247,.72);
+      box-shadow: 6px 8px 0 rgba(35,83,132,.055);
+    }
+    .chapter:nth-of-type(3n+2) .chapter-head { border-left-color: var(--green-2); }
+    .chapter:nth-of-type(3n+3) .chapter-head { border-left-color: #d1a02e; }
+    .chapter-no {
+      width: 52px;
+      height: 52px;
+      color: white;
+      border: 0;
+      border-radius: 50%;
+      background: var(--green);
+      box-shadow: 4px 4px 0 rgba(214,91,59,.18);
+    }
+    .chapter:nth-of-type(3n+2) .chapter-no { background: var(--green-2); }
+    .chapter:nth-of-type(3n+3) .chapter-no { background: #b67d15; }
+    .chapter h2 {
+      color: #18344f;
+      font-family: "STSong", "Songti SC", "SimSun", serif;
+      font-size: clamp(30px, 3.8vw, 48px);
+    }
+    .chapter-intro { color: #5d6974; }
+    .tag { color: #6c5e50; border-color: rgba(135,103,73,.24); background: #f7efe1; }
+    .chapter-toggle {
+      position: absolute;
+      right: 18px;
+      top: 50%;
+      min-width: 58px;
+      transform: translateY(-50%);
+      color: var(--green);
+    }
+    .chapter-toggle:hover { transform: translateY(calc(-50% - 1px)); }
+    .chapter.collapsed .chapter-toggle { color: white; background: var(--green); }
+
+    h3 { color: #214764; font-family: "STSong", "Songti SC", "SimSun", serif; }
+    h4 { color: #243b50; }
+    .lead { color: #4e5d69; }
+    .muted { color: #6c7680; }
+    .kicker { color: var(--green-2); }
+    .summary-card, .info-card, .prompt-card, .glossary-card {
+      color: var(--ink);
+      border: 1px solid rgba(23,37,54,.16);
+      background: rgba(255,253,247,.90);
+      box-shadow: 5px 7px 0 rgba(35,83,132,.055);
+    }
+    .summary-card:nth-child(even) { box-shadow: 5px 7px 0 rgba(214,91,59,.06); }
+    .summary-card::after { color: rgba(35,83,132,.065); }
+    .summary-card .time { color: var(--green-2); }
+    .summary-card h3 { color: #1c405f; }
+    .summary-card p, .prompt-card p, .glossary-card p { color: #65707a; }
+    .summary-card ul { color: #4f5c67; }
+    .route { border-color: rgba(23,37,54,.16); background: rgba(23,37,54,.14); }
+    .route div { background: #fffdf7; }
+    .route strong { color: var(--green-2); }
+    .route div:not(:last-child)::after { color: var(--green-2); }
+
+    .callout {
+      color: #405668;
+      border-left-color: var(--green);
+      background: #e7eff5;
+    }
+    .callout strong { color: var(--green); }
+    .callout.warning { border-color: #c68a19; background: #fbf0d5; }
+    .callout.warning strong { color: #8c5e0b; }
+    .callout.danger { border-color: #b9433e; background: #f8e4df; }
+    .callout.danger strong { color: #a03731; }
+    .callout.evidence { border-color: #2e7097; background: #e5f0f5; }
+    .callout.evidence strong { color: #255f80; }
+
+    .step {
+      color: var(--ink);
+      border: 1px solid rgba(23,37,54,.15);
+      background: rgba(255,253,247,.90);
+      box-shadow: 4px 5px 0 rgba(35,83,132,.045);
+    }
+    .step::before { color: white; background: var(--green-2); }
+    .step p { color: #596773; }
+    .step-check { accent-color: var(--green-2); }
+    .step:has(.step-check:checked) { border-color: rgba(35,83,132,.35); background: #edf3f6; }
+    .checklist li::before { color: var(--green-2); }
+
+    .shot {
+      border: 1px solid rgba(23,37,54,.18);
+      background: #fffdf7;
+      box-shadow: 7px 9px 0 rgba(35,83,132,.075), 0 18px 45px rgba(50,53,54,.08);
+      padding: 9px;
+    }
+    .shot img { height: auto; aspect-ratio: auto; object-fit: contain; border: 1px solid rgba(23,37,54,.10); }
+    .shot:hover img { filter: saturate(.94) brightness(1.02); }
+    .shot figcaption {
+      color: #5d6872;
+      border-top: 0;
+      padding: 14px 8px 6px;
+    }
+    .shot figcaption b { color: white; background: var(--green-2); }
+    .table-wrap { border-color: rgba(23,37,54,.17); background: #fffdf7; box-shadow: 4px 5px 0 rgba(35,83,132,.045); }
+    th { color: #183f61; background: #e9f0f4; }
+    th, td { border-bottom-color: rgba(23,37,54,.13); }
+    td { color: #53616d; }
+    td strong { color: #1c344a; }
+
+    .code-block { border-color: #38576f; background: #172b3e; box-shadow: 4px 5px 0 rgba(214,91,59,.10); }
+    .code-label { color: #bdcbd6; border-color: rgba(255,255,255,.14); }
+    pre { color: #eef3f0; }
+    .copy-button { color: white; border-color: rgba(255,255,255,.30); background: #294760; }
+    .copy-button:hover { color: white; background: var(--green-2); }
+    details { color: var(--ink); border-color: rgba(23,37,54,.16); background: #fffdf7; }
+    summary { color: #23445f; }
+    details > div { color: #5c6873; }
+    .prompt-card h4, .glossary-card h4 { color: var(--green-2); }
+    .footer { color: #cbd3d7; border-top: 0; background: #1c344a; }
+    .footer strong { color: white; }
+    .lightbox { color: white; }
+
+    .mobile-drawer {
+      display: none;
+      position: fixed;
+      z-index: 80;
+      inset: 0;
+      padding: 76px 22px 28px;
+      background: rgba(244,239,228,.97);
+      backdrop-filter: blur(18px);
+      overflow: auto;
+    }
+    .mobile-drawer.open { display: block; }
+    .mobile-drawer nav { display: grid; gap: 8px; max-width: 560px; margin: auto; }
+    .mobile-drawer a {
+      display: grid;
+      grid-template-columns: 42px 1fr;
+      padding: 13px 15px;
+      color: #25445f;
+      border: 1px solid rgba(23,37,54,.15);
+      background: #fffdf7;
+      text-decoration: none;
+    }
+    .mobile-drawer-close {
+      position: fixed;
+      right: 18px;
+      top: 18px;
+      width: 42px;
+      height: 42px;
+      border: 1px solid rgba(23,37,54,.25);
+      border-radius: 50%;
+      color: white;
+      background: var(--green-2);
+      font-size: 22px;
+    }
+
+    /* Video classroom: one cinematic player, five compact lessons. */
+    .video-theatre {
+      display: grid;
+      grid-template-columns: minmax(0, 1.55fr) minmax(280px, .72fr);
+      overflow: hidden;
+      border: 1px solid rgba(23,37,54,.24);
+      background: #172b3e;
+      box-shadow: 12px 15px 0 rgba(35,83,132,.09), 0 28px 70px rgba(42,48,52,.13);
+    }
+    .video-stage {
+      min-width: 0;
+      padding: 20px;
+      color: white;
+      background:
+        radial-gradient(circle at 92% 2%, rgba(214,91,59,.20), transparent 18rem),
+        linear-gradient(145deg, #1c354b, #102334 72%);
+    }
+    .video-screen {
+      position: relative;
+      overflow: hidden;
+      border: 1px solid rgba(255,255,255,.22);
+      background: #07131e;
+      box-shadow: 0 18px 45px rgba(0,0,0,.28);
+    }
+    .video-screen::before {
+      content: "完整实操录屏";
+      position: absolute;
+      z-index: 2;
+      top: 12px;
+      left: 12px;
+      padding: 4px 9px;
+      color: white;
+      background: rgba(214,91,59,.92);
+      font: 800 10px/1.5 "Microsoft YaHei UI", sans-serif;
+      letter-spacing: .08em;
+      pointer-events: none;
+    }
+    .video-screen video {
+      display: block;
+      width: 100%;
+      aspect-ratio: 960 / 608;
+      object-fit: contain;
+      background: #07131e;
+    }
+    .now-playing { padding: 20px 4px 4px; }
+    .now-playing-topline {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      color: #aebfcb;
+      font: 700 11px/1.4 "Cascadia Code", Consolas, monospace;
+      letter-spacing: .08em;
+    }
+    .now-playing-topline strong { color: #f08a6f; }
+    .now-playing h3 {
+      margin: 9px 0 10px;
+      color: white;
+      font-family: "STSong", "Songti SC", "SimSun", serif;
+      font-size: clamp(24px, 3vw, 34px);
+    }
+    .now-playing p { color: #c5d0d7; font-size: 14px; }
+    .lesson-topics { display: flex; flex-wrap: wrap; gap: 7px; margin-top: 14px; }
+    .lesson-topics span {
+      padding: 4px 9px;
+      color: #d8e3ea;
+      border: 1px solid rgba(255,255,255,.19);
+      border-radius: 999px;
+      font-size: 11px;
+    }
+    .lesson-actions {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-top: 18px;
+      padding-top: 15px;
+      border-top: 1px solid rgba(255,255,255,.14);
+    }
+    .lesson-links { display: flex; flex-wrap: wrap; gap: 12px; }
+    .lesson-links a { color: #f5b09e; font-size: 12px; font-weight: 700; }
+    .player-nav { display: flex; gap: 7px; }
+    .player-nav button {
+      min-width: 72px;
+      padding: 7px 10px;
+      color: white;
+      border: 1px solid rgba(255,255,255,.24);
+      border-radius: 999px;
+      background: rgba(255,255,255,.07);
+      cursor: pointer;
+      font-size: 11px;
+    }
+    .player-nav button:hover:not(:disabled) { border-color: #f08a6f; background: rgba(214,91,59,.16); }
+    .player-nav button:disabled { opacity: .38; cursor: not-allowed; }
+
+    .episode-panel {
+      padding: 19px 16px 18px;
+      color: var(--ink);
+      background: #f8f1e5;
+      border-left: 1px solid rgba(255,255,255,.18);
+    }
+    .episode-panel-head {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 12px;
+      margin: 0 4px 13px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid rgba(23,37,54,.16);
+    }
+    .episode-panel-head strong { color: #1d405e; font-family: "STSong", "SimSun", serif; font-size: 18px; }
+    .episode-panel-head span { color: var(--green-2); font: 800 10px/1.4 "Cascadia Code", Consolas, monospace; }
+    .episode-list { display: grid; gap: 9px; }
+    .episode {
+      display: grid;
+      grid-template-columns: 58px minmax(0,1fr) 24px;
+      gap: 11px;
+      align-items: center;
+      width: 100%;
+      padding: 8px;
+      text-align: left;
+      color: #354c5e;
+      border: 1px solid rgba(23,37,54,.14);
+      background: rgba(255,253,247,.80);
+      cursor: pointer;
+      transition: transform .18s ease, border-color .18s ease, background .18s ease;
+    }
+    .episode:hover { transform: translateX(-2px); border-color: rgba(35,83,132,.42); background: white; }
+    .episode img { width: 58px; height: 42px; object-fit: cover; border: 1px solid rgba(23,37,54,.13); }
+    .episode-copy { min-width: 0; display: grid; gap: 3px; }
+    .episode strong { color: #26465f; font-size: 12px; line-height: 1.35; }
+    .episode small { color: #8a7968; font: 700 10px/1.3 "Cascadia Code", Consolas, monospace; }
+    .episode-state {
+      display: grid;
+      place-items: center;
+      width: 21px;
+      height: 21px;
+      color: var(--green);
+      border: 1px solid rgba(35,83,132,.28);
+      border-radius: 50%;
+      font-size: 9px;
+    }
+    .episode.active {
+      color: white;
+      border-color: #234f72;
+      background: #234f72;
+      box-shadow: 4px 5px 0 rgba(214,91,59,.17);
+    }
+    .episode.active strong, .episode.active small { color: white; }
+    .episode.active .episode-state { color: #17324a; border-color: #f3aa96; background: #f3aa96; }
+    .video-note { margin-top: 20px; font-size: 13px; }
+
+    @media (max-width: 1100px) {
+      .mobile-toc {
+        color: white;
+        border-color: var(--green);
+        border-radius: 999px;
+        background: var(--green);
+        box-shadow: 0 8px 24px rgba(35,83,132,.18);
+      }
+      .reading-tools { top: 66px; }
+    }
+    @media (max-width: 760px) {
+      .hero { background: linear-gradient(145deg, #faf5ea, #eee3d0); }
+      .hero-inner { padding-top: 66px; gap: 0; }
+      .hero-visual { display: block; margin-top: 26px; padding: 7px; box-shadow: 7px 8px 0 rgba(35,83,132,.09); transform: none; }
+      .hero-visual img { height: 148px; aspect-ratio: auto; object-fit: cover; object-position: top; }
+      .hero-visual figcaption { display: none; }
+      .hero-visual::before { top: -10px; left: 12px; }
+      .metrics { grid-template-columns: repeat(3, minmax(0,1fr)); gap: 6px; }
+      .metric { padding: 13px 9px; }
+      .metric strong { font-size: 19px; }
+      .metric span { font-size: 9px; }
+      .reading-tools { position: relative; top: 0; display: grid; margin-top: -4px; }
+      .reading-tools-actions { display: grid; grid-template-columns: 1fr 1fr; }
+      .print-button { grid-column: 1 / -1; }
+      .chapter-head {
+        grid-template-columns: 46px minmax(0,1fr);
+        padding: 18px 68px 18px 14px;
+      }
+      .chapter-no { width: 42px; height: 42px; }
+      .chapter h2 { font-size: 30px; }
+      .chapter.collapsed .chapter-head { min-height: 72px; padding: 11px 62px 11px 11px; }
+      .chapter.collapsed h2 { font-size: 23px; }
+      .chapter.collapsed .chapter-no { width: 38px; height: 38px; }
+      .chapter-intro { font-size: 13px; }
+      .chapter-toggle { right: 10px; min-width: 50px; padding-inline: 8px; }
+      .shot { padding: 6px; box-shadow: 4px 5px 0 rgba(35,83,132,.07); }
+      .video-theatre { grid-template-columns: 1fr; }
+      .video-stage { padding: 10px; }
+      .video-screen::before { top: 8px; left: 8px; }
+      .now-playing { padding: 16px 4px 5px; }
+      .now-playing h3 { font-size: 25px; }
+      .lesson-actions { align-items: flex-start; }
+      .episode-panel { border-left: 0; border-top: 1px solid rgba(255,255,255,.18); }
+      .episode { grid-template-columns: 66px minmax(0,1fr) 24px; }
+      .episode img { width: 66px; height: 46px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
+    }
+
+    @media print {
+      :root { --ink: #111; --muted: #4b4b4b; --paper: white; --panel: white; --panel-2: #f6f6f2; --line: #d5d5cf; }
+      body { background: white; color: #111; font-size: 11pt; }
+      .reading-progress, .sidebar, .mobile-toc, .reading-tools, .chapter-toggle, .mobile-drawer, .hero-actions, .copy-button, .step-check, .lightbox, .video-screen, .player-nav { display: none !important; }
+      .hero { min-height: auto; page-break-after: always; }
+      .hero-inner { grid-template-columns: 1fr; padding: 40px 0; }
+      .hero-visual { max-width: 720px; transform: none; box-shadow: none; }
+      .layout { display: block; width: 100%; padding: 0; }
+      .chapter, .chapter.collapsed { break-before: page; margin: 0; padding-top: 20px; }
+      .chapter-body, .chapter.collapsed .chapter-body { display: block !important; }
+      .summary-card, .info-card, .prompt-card, .glossary-card, .step, details, .code-block { background: white; break-inside: avoid; }
+      details > * { display: block !important; }
+      .shot { break-inside: avoid; box-shadow: none; }
+      .video-theatre { display: block; color: #111; border: 1px solid #bbb; background: white; box-shadow: none; }
+      .video-stage, .episode-panel { color: #111; background: white; }
+      .now-playing h3, .episode strong, .episode small { color: #111; }
+      .now-playing p { color: #444; }
+      .lesson-topics span { color: #333; border-color: #aaa; }
+      .episode-list { grid-template-columns: 1fr 1fr; }
+      .episode { break-inside: avoid; }
+      pre { color: #17391b; background: #f3f8f3; }
+      a { color: #145d1d; }
+    }
+  </style>
+</head>
+<body>
+  <div class="reading-progress" aria-hidden="true"><span id="readingBar"></span></div>
+
+  <header class="hero" id="top">
+    <div class="hero-inner">
+      <div>
+        <p class="eyebrow">图文实操教程 · QODER CN · 2026年7月</p>
+        <h1><span>把 Qoder 变成你的</span><em>本地执行工作台</em></h1>
+        <p class="hero-lede">5 段连续实操录屏现已支持网页在线播放，并配套完整图文步骤：从官网入口、下载安装、注册登录与 Credits，到语音任务、本地项目运行、端口冲突排查，以及 Qoder CLI 的安装升级。</p>
+        <div class="hero-actions">
+          <a class="button primary" href="#video-classroom">观看视频课堂</a>
+          <a class="button" href="#versions">开始图文学习</a>
+          <a class="button" href="#troubleshooting">直接排错</a>
+        </div>
+        <div class="metrics" aria-label="教程数据">
+          <div class="metric"><strong>05</strong><span>可播放视频课</span></div>
+          <div class="metric"><strong>13:37</strong><span>录屏总时长</span></div>
+          <div class="metric"><strong>44</strong><span>脱敏关键截图</span></div>
+        </div>
+      </div>
+      <figure class="hero-visual">
+        <img class="zoomable" src="assets/32_browser_success.jpg" alt="浏览器成功打开 AIPROS 全部 Skill 页面" loading="eager">
+        <figcaption>最终验证画面：Qoder 自动排查端口冲突并在浏览器打开本地系统。</figcaption>
+      </figure>
+    </div>
+  </header>
+
+  <div class="layout">
+    <aside class="sidebar">
+      <div class="toc">
+        <div class="toc-title"><strong>操作目录</strong><span class="toc-progress" id="tocProgress">0 / 10</span></div>
+        <div class="toc-meter"><span id="tocMeter"></span></div>
+        <nav aria-label="教程目录">
+          <a href="#video-classroom"><span>▶</span><span>视频课堂</span></a>
+          <a href="#overview"><span>00</span><span>视频总览</span></a>
+          <a href="#versions"><span>01</span><span>认识三个入口</span></a>
+          <a href="#download"><span>02</span><span>下载与安装</span></a>
+          <a href="#login"><span>03</span><span>注册与登录</span></a>
+          <a href="#credits"><span>04</span><span>套餐、Credits、模型</span></a>
+          <a href="#voice-task"><span>05</span><span>语音任务与多 Agent</span></a>
+          <a href="#local-project"><span>06</span><span>运行本地项目</span></a>
+          <a href="#qoder-ide"><span>07</span><span>Qoder IDE 自动排错</span></a>
+          <a href="#cli"><span>08</span><span>安装 / 升级 CLI</span></a>
+          <a href="#troubleshooting"><span>09</span><span>排错手册</span></a>
+          <a href="#video-index"><span>10</span><span>时间轴与附录</span></a>
+        </nav>
+        <p class="toc-note">勾选每一步后，完成度会保存在当前浏览器。点击任意截图可查看原图。</p>
+      </div>
+    </aside>
+
+    <main>
+      <button class="mobile-toc" id="mobileToc" type="button">目录：视频课堂 ↓</button>
+
+      <div class="reading-tools" aria-label="阅读模式">
+        <div class="reading-tools-label"><span>阅读方式</span><strong>按需展开，不必从头读到尾</strong></div>
+        <div class="reading-tools-actions">
+          <button class="mode-button active" type="button" data-mode="compact">精简阅读</button>
+          <button class="mode-button" type="button" data-mode="full">完整展开</button>
+          <button class="mode-button print-button" type="button">打印 / PDF</button>
+        </div>
+      </div>
+
+      <section class="chapter video-classroom" id="video-classroom" data-section="视频课堂">
+        <div class="chapter-head">
+          <div class="chapter-no" aria-hidden="true">▶</div>
+          <div>
+            <h2>先看实操，再按图复现</h2>
+            <p class="chapter-intro">5 集连续视频课，共约 13 分 37 秒。使用主播放器按顺序观看，或从右侧选集直接进入需要的主题。</p>
+            <div class="chapter-meta"><span class="tag">5 集完整视频</span><span class="tag">13:37</span><span class="tag">支持全屏播放</span></div>
+          </div>
+        </div>
+
+        <div class="video-theatre">
+          <div class="video-stage">
+            <div class="video-screen">
+              <video id="courseVideo" controls playsinline preload="metadata" poster="assets/06_qoder_product_menu.jpg" aria-describedby="courseSummary">
+                <source id="courseVideoSource" src="media/lesson-01-entry-download-login.mp4" type="video/mp4">
+                当前浏览器不支持 MP4 视频播放。你可以<a href="media/lesson-01-entry-download-login.mp4">直接打开视频文件</a>。
+              </video>
+            </div>
+            <div class="now-playing" aria-live="polite">
+              <div class="now-playing-topline"><strong id="courseCount">正在播放 · 01 / 05</strong><span id="courseDuration">03:00</span></div>
+              <h3 id="courseTitle">找到正确入口：官网、下载与注册</h3>
+              <p id="courseSummary">从国际站进入中国站，辨认 QoderWork、Desktop 和 CLI，选择正确安装包并进入注册登录。</p>
+              <div class="lesson-topics" id="courseTopics"><span>产品入口</span><span>安装包选择</span><span>注册登录</span></div>
+              <div class="lesson-actions">
+                <div class="lesson-links" id="courseLinks">
+                  <a href="#versions">认识三个入口</a><a href="#download">查看下载步骤</a><a href="#login">查看登录步骤</a>
+                </div>
+                <div class="player-nav" aria-label="切换课程">
+                  <button id="coursePrev" type="button" disabled>← 上一课</button>
+                  <button id="courseNext" type="button">下一课 →</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="episode-panel">
+            <div class="episode-panel-head"><strong>课程目录</strong><span>5 LESSONS</span></div>
+            <nav class="episode-list" aria-label="视频课程选集">
+              <button class="episode active" type="button" data-lesson="0" aria-pressed="true">
+                <img src="assets/06_qoder_product_menu.jpg" alt="" loading="lazy">
+                <span class="episode-copy"><strong>官网、下载与注册</strong><small>LESSON 01 · 03:00</small></span>
+                <span class="episode-state" aria-hidden="true">▶</span>
+              </button>
+              <button class="episode" type="button" data-lesson="1" aria-pressed="false">
+                <img src="assets/15_credit_usage.jpg" alt="" loading="lazy">
+                <span class="episode-copy"><strong>登录、Credits 与模型</strong><small>LESSON 02 · 02:59</small></span>
+                <span class="episode-state" aria-hidden="true">▶</span>
+              </button>
+              <button class="episode" type="button" data-lesson="2" aria-pressed="false">
+                <img src="assets/19_parallel_agents.jpg" alt="" loading="lazy">
+                <span class="episode-copy"><strong>语音、多 Agent 与项目</strong><small>LESSON 03 · 03:00</small></span>
+                <span class="episode-state" aria-hidden="true">▶</span>
+              </button>
+              <button class="episode" type="button" data-lesson="3" aria-pressed="false">
+                <img src="assets/32_browser_success.jpg" alt="" loading="lazy">
+                <span class="episode-copy"><strong>IDE 启动项目并排错</strong><small>LESSON 04 · 02:07</small></span>
+                <span class="episode-state" aria-hidden="true">▶</span>
+              </button>
+              <button class="episode" type="button" data-lesson="4" aria-pressed="false">
+                <img src="assets/07_cli_install_commands.jpg" alt="" loading="lazy">
+                <span class="episode-copy"><strong>安装或升级 Qoder CLI</strong><small>LESSON 05 · 02:32</small></span>
+                <span class="episode-state" aria-hidden="true">▶</span>
+              </button>
+            </nav>
+          </div>
+        </div>
+
+        <div class="callout danger video-note"><strong>公开观看提示：</strong>本页按发布者要求保留原始录屏，画面可能短暂显示账号、验证码、Credits 或本地目录等信息。请勿复制、尝试登录或将这些信息用于教程之外的用途。</div>
+      </section>
+
+      <section class="chapter" id="overview" data-section="视频总览">
+        <div class="chapter-head">
+          <div class="chapter-no">00</div>
+          <div>
+            <h2>这 5 个视频到底讲了什么</h2>
+            <p class="chapter-intro">它们不是五个独立技巧，而是一条完整路径：先装好并登录 QoderWork，再让智能体理解本地文件、运行代码、解决环境问题，最后扩展到 CLI。</p>
+            <div class="chapter-meta"><span class="tag">先读 5 分钟</span><span class="tag">全流程地图</span><span class="tag">视频 1–5</span></div>
+          </div>
+        </div>
+
+        <div class="summary-grid">
+          <article class="summary-card" data-index="1">
+            <span class="time">VIDEO 01 · 03:00</span>
+            <h3>官网入口、下载与注册起点</h3>
+            <p>从国际站切换到中国站，认识 QoderWork、Desktop 与 CLI；按芯片或安装范围选择安装包，进入个人登录和阿里云统一登录页面。</p>
+            <ul><li>Mac Intel / Apple Silicon</li><li>Windows User / System</li><li>CLI 官方安装命令</li></ul>
+          </article>
+          <article class="summary-card" data-index="2">
+            <span class="time">VIDEO 02 · 02:59</span>
+            <h3>完成登录、订阅与模型选择</h3>
+            <p>手机号验证码登录后，授权浏览器打开客户端；浏览工作台、个人套餐、资源包、Credits 用量，并查看各模型的消耗倍率。</p>
+            <ul><li>浏览器回跳客户端</li><li>¥0 / ¥59 / ¥169 / ¥559（录制时）</li><li>Qwen 与 DeepSeek 模型菜单</li></ul>
+          </article>
+          <article class="summary-card" data-index="3">
+            <span class="time">VIDEO 03 · 03:00</span>
+            <h3>语音任务、多 Agent 与本地文件</h3>
+            <p>用语音要求 QoderWork 扫描桌面、归纳工作并制定周计划；再新建任务、附加本地代码文件夹，让智能体尝试启动项目。</p>
+            <ul><li>麦克风授权与转写</li><li>任务拆解与并行 Agent</li><li>读取 package.json、运行 npm run local</li></ul>
+          </article>
+          <article class="summary-card" data-index="4">
+            <span class="time">VIDEO 04 · 02:07</span>
+            <h3>Qoder IDE 启动项目并自动排错</h3>
+            <p>在 Qoder IDE 打开同一项目，通过 Run Task 启动；AI 发现 4000 端口被旧进程占用，定位进程、结束旧实例、重启并打开浏览器。</p>
+            <ul><li>项目文件树 / 编辑器 / Agent</li><li>lsof、ps、kill 的诊断链</li><li>localhost:4000/all-skills 验证成功</li></ul>
+          </article>
+          <article class="summary-card" data-index="5">
+            <span class="time">VIDEO 05 · 02:32</span>
+            <h3>安装或升级 Qoder CN CLI</h3>
+            <p>从官网复制系统命令，也可直接让 QoderWork 检查当前 CLI、识别国内版 npm 包、执行全局升级并验证版本与路径。</p>
+            <ul><li>当前 1.0.48 → npm 最新 1.1.3（录屏）</li><li>@qoder-ai/qodercli</li><li>后台多任务切换</li></ul>
+          </article>
+          <article class="summary-card" data-index="✓">
+            <span class="time">学习成果</span>
+            <h3>学完后的可验证结果</h3>
+            <p>你能独立完成下载安装、登录、查看 Credits、选择模型、发起带本地上下文的任务、运行一个 Node 项目、识别端口冲突，并验证 CLI 是否可用。</p>
+            <ul><li>知道哪些画面是“执行中”</li><li>知道哪些画面是真正“成功”</li><li>不会照抄视频里的 PID 和账户数据</li></ul>
+          </article>
+        </div>
+
+        <div class="route" aria-label="完整学习路径">
+          <div><strong>01 / ENTER</strong><span>进入中国站<br>辨认产品入口</span></div>
+          <div><strong>02 / ACCESS</strong><span>下载安装<br>注册并登录</span></div>
+          <div><strong>03 / OPERATE</strong><span>语音下任务<br>添加本地文件</span></div>
+          <div><strong>04 / DEBUG</strong><span>运行项目<br>自动诊断环境</span></div>
+          <div><strong>05 / EXTEND</strong><span>安装 CLI<br>验证命令行</span></div>
+        </div>
+
+        <div class="callout warning"><strong>版本提醒：</strong>教程严格依据 2026 年 7 月录屏。套餐价格、赠送 Credits、促销倍率、模型名称和官网布局都有可能调整；操作时以你当前界面为准。</div>
+      </section>
+
+      <section class="chapter" id="versions" data-section="认识三个入口">
+        <div class="chapter-head">
+          <div class="chapter-no">01</div>
+          <div>
+            <h2>先分清 Qoder、QoderWork 和 CLI</h2>
+            <p class="chapter-intro">视频里三个名称反复出现。它们面向的工作场景不同，先分清，后面就不会“下载错软件”或“在错误窗口里找按钮”。</p>
+            <div class="chapter-meta"><span class="tag">概念</span><span class="tag">官网入口</span><span class="tag">视频 1</span></div>
+          </div>
+        </div>
+
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>产品</th><th>它是什么</th><th>录屏中的用途</th><th>你应在什么时候用</th></tr></thead>
+            <tbody>
+              <tr><td><strong>QoderWork CN</strong></td><td>本地运行的 AI 工作台</td><td>语音任务、扫描桌面、附加文件夹、多任务、安装 CLI</td><td>办公任务、跨文件整理、让智能体代执行</td></tr>
+              <tr><td><strong>Qoder CN Desktop / IDE</strong></td><td>面向代码项目的桌面开发环境</td><td>打开项目、查看文件树、Run Task、启动和排错</td><td>需要阅读、修改、运行代码项目时</td></tr>
+              <tr><td><strong>Qoder CN CLI</strong></td><td>终端中的 Qoder 命令行工具</td><td>通过官网命令安装，或由 QoderWork 自动升级</td><td>习惯终端或需要脚本化工作流时</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="figure-grid">
+          <figure class="shot"><img class="zoomable" src="assets/01_international_site.jpg" alt="Qoder 国际站首页，右上角可进入中国站" loading="lazy"><figcaption><b>01</b><span>国际站首页：顶部为英文导航，右上角有 <strong>Visit China Site</strong>。</span></figcaption></figure>
+          <figure class="shot"><img class="zoomable" src="assets/02_visit_china_site.jpg" alt="Qoder 中国站首页" loading="lazy"><figcaption><b>02</b><span>中国站：域名变为 <strong>qoder.com.cn</strong>，导航出现“能力市场、价格、资源、登录”。</span></figcaption></figure>
+        </div>
+
+        <div class="step-list">
+          <article class="step"><div><h4>访问国际站</h4><p>浏览器输入 <a href="https://qoder.com" target="_blank" rel="noreferrer">qoder.com</a>。看到英文首页和右上角 <strong>Visit China Site →</strong>，说明当前是国际站。</p></div><input class="step-check" type="checkbox" aria-label="完成：访问国际站"></article>
+          <article class="step"><div><h4>切换中国站</h4><p>点击 <strong>Visit China Site →</strong>，确认地址变为 <strong>qoder.com.cn</strong>。录屏后续注册、套餐、国内模型和 QoderWork CN 都从中国站进入。</p></div><input class="step-check" type="checkbox" aria-label="完成：切换中国站"></article>
+          <article class="step"><div><h4>从导航选择产品</h4><p>日常办公选择 <strong>QoderWork</strong>；代码项目选择 <strong>Qoder → Desktop</strong>；命令行选择 <strong>Qoder → CLI</strong>。</p></div><input class="step-check" type="checkbox" aria-label="完成：选择产品"></article>
+        </div>
+      </section>
+
+      <section class="chapter" id="download" data-section="下载与安装">
+        <div class="chapter-head">
+          <div class="chapter-no">02</div>
+          <div>
+            <h2>按电脑类型下载正确版本</h2>
+            <p class="chapter-intro">视频展示了下载入口和版本选择，但没有完整展示安装向导。这里把“视频确实展示的选择”与“系统常规安装动作”分开说明。</p>
+            <div class="chapter-meta"><span class="tag">MacOS 14+</span><span class="tag">Windows 10+</span><span class="tag">视频 1</span></div>
+          </div>
+        </div>
+
+        <figure class="shot figure-wide"><img class="zoomable" src="assets/03_qoderwork_download.jpg" alt="QoderWork CN 桌面应用下载页" loading="lazy"><figcaption><b>03</b><span>QoderWork CN 下载页：Mac 与 Windows 分开选择，下载前先确认系统和芯片。</span></figcaption></figure>
+
+        <h3>QoderWork CN 的版本怎么选</h3>
+        <div class="figure-grid">
+          <figure class="shot"><img class="zoomable" src="assets/04_macos_architecture.jpg" alt="Mac 下载菜单包含 X64 Intel 与 ARM64 Apple Silicon" loading="lazy"><figcaption><b>04</b><span>Mac：Intel 处理器选 <strong>X64 (Intel)</strong>；M1/M2/M3/M4 等 Apple 芯片选 <strong>ARM64 (Apple Silicon)</strong>。</span></figcaption></figure>
+          <figure class="shot"><img class="zoomable" src="assets/05_windows_install_type.jpg" alt="Windows 下载菜单包含 X64 User 与 X64 System" loading="lazy"><figcaption><b>05</b><span>Windows：视频推荐普通用户选择 <strong>X64 (User)</strong>；<strong>X64 (System)</strong> 通常用于全系统安装。</span></figcaption></figure>
+        </div>
+
+        <div class="step-list">
+          <article class="step"><div><h4>进入 QoderWork 下载页</h4><p>在中国站顶部点击 <strong>QoderWork</strong>，进入“QoderWork CN 桌面应用”。</p></div><input class="step-check" type="checkbox" aria-label="完成：进入下载页"></article>
+          <article class="step"><div><h4>Mac：先确认芯片</h4><p>打开“关于本机”。Intel 机型选 X64；Apple M 系列芯片选 ARM64。选错架构可能无法启动或性能异常。</p></div><input class="step-check" type="checkbox" aria-label="完成：选择 Mac 架构"></article>
+          <article class="step"><div><h4>Windows：优先 User 版</h4><p>个人电脑按视频选择 <strong>X64 (User)</strong>。只有明确需要管理员统一部署或全用户安装时，才考虑 System 版。</p></div><input class="step-check" type="checkbox" aria-label="完成：选择 Windows 安装范围"></article>
+          <article class="step"><div><h4>运行安装包并启动</h4><p>下载后按系统常规方式安装并启动 QoderWork。此段属于常规系统操作，原视频未展示每一个安装向导页面。</p></div><input class="step-check" type="checkbox" aria-label="完成：安装并启动"></article>
+        </div>
+
+        <h3>如果你要的是代码 IDE</h3>
+        <div class="figure-grid">
+          <figure class="shot"><img class="zoomable" src="assets/42_qoder_desktop_page.jpg" alt="Qoder CN Desktop 产品页面" loading="lazy"><figcaption><b>06</b><span>Qoder CN Desktop 页面提供 Mac、Windows 和 Linux 入口；它与 QoderWork 是两个不同客户端。</span></figcaption></figure>
+          <figure class="shot"><img class="zoomable" src="assets/06_qoder_product_menu.jpg" alt="Qoder 产品下拉菜单，含 Desktop、CLI 等" loading="lazy"><figcaption><b>07</b><span>顶部 <strong>Qoder</strong> 菜单包含 Desktop、JetBrains 插件、CLI、Mobile、Cloud Agents 等入口。</span></figcaption></figure>
+        </div>
+
+        <div class="callout evidence"><strong>证据边界：</strong>视频 1 在 CLI 页复制命令并粘贴到终端，但没有展示这次手动命令的安装输出；真正的 CLI 升级与验证在视频 5 中由 QoderWork 完成。</div>
+      </section>
+
+      <section class="chapter" id="login" data-section="注册与登录">
+        <div class="chapter-head">
+          <div class="chapter-no">03</div>
+          <div>
+            <h2>注册账号，并让浏览器回到客户端</h2>
+            <p class="chapter-intro">完整链路是“客户端发起 → 网站登录 → 浏览器授权打开 QoderWork CN → 回到工作台”。很多人卡在最后一步，不是账号失败，而是浏览器没有把登录状态交还给应用。</p>
+            <div class="chapter-meta"><span class="tag">手机号</span><span class="tag">阿里云账号</span><span class="tag">视频 1–2</span></div>
+          </div>
+        </div>
+
+        <div class="figure-grid">
+          <figure class="shot"><img class="zoomable" src="assets/08_personal_login_entry.jpg" alt="Qoder CN 个人登录入口" loading="lazy"><figcaption><b>08</b><span>网站登录入口：可切换个人/企业登录，个人登录页提供“使用阿里云登录”和“立即注册”。</span></figcaption></figure>
+          <figure class="shot"><img class="zoomable" src="assets/09_register_phone_form.jpg" alt="Qoder CN 手机号登录与注册表单" loading="lazy"><figcaption><b>09</b><span>阿里云统一登录：支持手机号 + 验证码，也可切换“账号登录”。</span></figcaption></figure>
+        </div>
+
+        <div class="step-list">
+          <article class="step"><div><h4>从网站或客户端点“登录/注册”</h4><p>网站右上角点 <strong>登录</strong>，或在 QoderWork 欢迎页点 <strong>登录/注册</strong>。选择“个人登录”，再进入阿里云统一登录。</p></div><input class="step-check" type="checkbox" aria-label="完成：打开登录入口"></article>
+          <article class="step"><div><h4>选择手机号或账号登录</h4><p>没有账号时可用手机号验证码完成登录/注册；已有阿里云账号时可切换“账号登录”。按页面提示勾选用户协议和隐私政策。</p></div><input class="step-check" type="checkbox" aria-label="完成：选择登录方式"></article>
+          <article class="step"><div><h4>完成浏览器登录</h4><p>输入手机号、获取短信验证码并提交。验证码只应输入官方网站，不要粘贴到聊天窗口或截图中。</p></div><input class="step-check" type="checkbox" aria-label="完成：网页登录"></article>
+          <article class="step"><div><h4>允许浏览器打开 QoderWork CN</h4><p>出现“要打开 QoderWork CN 吗？”时，点击 <strong>打开 QoderWork CN</strong>。个人设备可勾选“始终允许”；公共电脑不建议勾选。</p></div><input class="step-check" type="checkbox" aria-label="完成：浏览器回跳客户端"></article>
+          <article class="step"><div><h4>确认进入工作台</h4><p>看到主标题“不止聊天，搞定一切”，左侧有“新任务 / 扩展 / 专家套件 / 技能 / 连接器”，即登录完成。</p></div><input class="step-check" type="checkbox" aria-label="完成：确认工作台"></article>
+        </div>
+
+        <div class="figure-grid">
+          <figure class="shot"><img class="zoomable" src="assets/10_qoderwork_welcome.jpg" alt="QoderWork 欢迎页和登录注册按钮" loading="lazy"><figcaption><b>10</b><span>客户端欢迎页：点击 <strong>登录/注册</strong> 发起网页登录。</span></figcaption></figure>
+          <figure class="shot"><img class="zoomable" src="assets/11_open_qoderwork_dialog.jpg" alt="浏览器提示打开 QoderWork CN，敏感信息已遮盖" loading="lazy"><figcaption><b>11</b><span>浏览器回跳确认。图中邮箱已脱敏，操作时点击“打开 QoderWork CN”。</span></figcaption></figure>
+          <figure class="shot"><img class="zoomable" src="assets/12_qoderwork_logged_in.jpg" alt="登录后的 QoderWork CN 工作台，账号已遮盖" loading="lazy"><figcaption><b>12</b><span>登录后的工作台：中央任务输入框、左侧能力入口、模型与语音按钮齐全。</span></figcaption></figure>
+          <figure class="shot"><img class="zoomable" src="assets/13_model_switched_notice.jpg" alt="QoderWork 中模型已切换到 Qwen3.7-Max 的提示，账号已遮盖" loading="lazy"><figcaption><b>13</b><span>首次活动提示后，顶部出现“模型已切换到 Qwen3.7-Max”的确认 Toast。</span></figcaption></figure>
+        </div>
+
+        <details><summary>浏览器没有弹出“打开 QoderWork CN”怎么办？</summary><div><ol><li>回到 QoderWork 客户端重新点登录，让它再次生成回跳。</li><li>检查浏览器是否拦截了外部应用/协议跳转。</li><li>如果之前点过“取消”，刷新登录成功页并重新触发。</li><li>仍失败时完全退出 QoderWork，再从客户端重新开始登录，不要只停留在网站登录成功页。</li></ol></div></details>
+        <div class="callout danger"><strong>隐私保护：</strong>原视频包含真实手机号、短信验证码、邮箱和账户 Credits。教程截图已使用脱敏版本；你在制作内部教程时也应同样处理。</div>
+      </section>
+
+      <section class="chapter" id="credits" data-section="套餐、Credits、模型">
+        <div class="chapter-head">
+          <div class="chapter-no">04</div>
+          <div>
+            <h2>先看 Credits，再选择模型</h2>
+            <p class="chapter-intro">QoderWork 的任务执行会消耗 Credits；不同模型显示不同倍率。录屏中的价格和倍率是当时页面状态，不应当作永久价格表。</p>
+            <div class="chapter-meta"><span class="tag">个人订阅</span><span class="tag">资源包</span><span class="tag">倍率</span><span class="tag">视频 2</span></div>
+          </div>
+        </div>
+
+        <figure class="shot figure-wide"><img class="zoomable" src="assets/14_subscription_plans.jpg" alt="Qoder CN 个人套餐价格卡片" loading="lazy"><figcaption><b>14</b><span>录屏时的个人套餐卡：体验版、专业版、高级版、旗舰版。价格和权益请以当前页面为准。</span></figcaption></figure>
+
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>录屏所示套餐</th><th>月费</th><th>Credits / 权益摘要</th><th>适合情形</th></tr></thead>
+            <tbody>
+              <tr><td><strong>体验版</strong></td><td>¥0</td><td>有限体验额度；2 周试用及 300 Credits</td><td>初次试用、熟悉界面</td></tr>
+              <tr><td><strong>专业版</strong></td><td>¥59</td><td>2,000 Credits；更多对话与智能体请求；Quest / Repo Wiki；专家团</td><td>常规个人使用</td></tr>
+              <tr><td><strong>高级版</strong></td><td>¥169</td><td>6,000 Credits；包含专业版能力；高频办公；优先体验新功能</td><td>较频繁的专业任务</td></tr>
+              <tr><td><strong>旗舰版</strong></td><td>¥559</td><td>20,000 Credits；包含高级版能力；重度用户旗舰套餐</td><td>高强度执行需求</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="figure-grid">
+          <figure class="shot"><img class="zoomable" src="assets/43_resource_pack.jpg" alt="套餐页下方的个人资源包" loading="lazy"><figcaption><b>15</b><span>录屏下方还有“个人资源包”：¥40 / 1,000 Credits，有效期自购买日起 1 个月（录制时信息）。</span></figcaption></figure>
+          <figure class="shot"><img class="zoomable" src="assets/15_credit_usage.jpg" alt="QoderWork 我的用量弹窗，账号已脱敏" loading="lazy"><figcaption><b>16</b><span>“我的用量”分开显示套餐内 Credits 与个人资源包：已用比例、剩余量、到期时间。</span></figcaption></figure>
+        </div>
+
+        <h3>检查用量的标准动作</h3>
+        <div class="step-list">
+          <article class="step"><div><h4>点右上角用量图标</h4><p>打开“我的用量”。先看套餐内 Credits，再看个人资源包；不要只看合计数。</p></div><input class="step-check" type="checkbox" aria-label="完成：打开我的用量"></article>
+          <article class="step"><div><h4>确认剩余量和有效期</h4><p>录屏示例显示 2,000 套餐 Credits 仍未使用、300 资源包已用 24；这是示例账户，不是所有人都会相同。</p></div><input class="step-check" type="checkbox" aria-label="完成：确认余额和期限"></article>
+          <article class="step"><div><h4>执行大任务前选模型</h4><p>输入框右下角点击当前模型名，比较模型能力与倍率。任务越长、并行 Agent 越多，越应该先确认余额。</p></div><input class="step-check" type="checkbox" aria-label="完成：选择模型"></article>
+        </div>
+
+        <figure class="shot figure-wide"><img class="zoomable" src="assets/16_model_selector.jpg" alt="QoderWork 模型选择菜单和倍率，账号已脱敏" loading="lazy"><figcaption><b>17</b><span>录屏时模型菜单：Auto、Qwen3.8-Max-Preview、Qwen3.7-Max、Qwen3.7-Plus、Qwen3.6-Flash、DeepSeek-V4-Pro、DeepSeek-V4-Flash。</span></figcaption></figure>
+
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>模型（录屏时）</th><th>倍率</th><th>使用建议</th></tr></thead>
+            <tbody>
+              <tr><td><strong>Auto</strong></td><td>0.5X</td><td>让系统自动选择；适合不想手动判断时。</td></tr>
+              <tr><td><strong>Qwen3.8-Max-Preview</strong></td><td>0.01X</td><td>录屏活动期特价，不能假设长期存在。</td></tr>
+              <tr><td><strong>Qwen3.7-Max</strong></td><td>0.1X</td><td>视频讲解者推荐并实际切换到此模型。</td></tr>
+              <tr><td><strong>Qwen3.7-Plus</strong></td><td>0.04X</td><td>录屏悬停卡片强调办公与推理能力。</td></tr>
+              <tr><td><strong>Qwen3.6-Flash</strong></td><td>0.1X</td><td>菜单中可见，偏快速响应。</td></tr>
+              <tr><td><strong>DeepSeek-V4-Pro</strong></td><td>0.5X</td><td>更高倍率，执行前关注 Credits。</td></tr>
+              <tr><td><strong>DeepSeek-V4-Flash</strong></td><td>0.1X</td><td>菜单中可见的低倍率选项。</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="callout warning"><strong>不要机械照抄倍率：</strong>倍率可能受促销、时段和账户策略影响。每次以你模型菜单右侧实时显示为准。</div>
+      </section>
+
+      <section class="chapter" id="voice-task" data-section="语音任务与多 Agent">
+        <div class="chapter-head">
+          <div class="chapter-no">05</div>
+          <div>
+            <h2>用语音下达一个“扫描桌面并做周计划”的任务</h2>
+            <p class="chapter-intro">视频 3 展示了从语音输入、任务拆解到多 Agent 并行扫描的过程；视频 5 后来展示了生成完成的周计划 Markdown。</p>
+            <div class="chapter-meta"><span class="tag">麦克风</span><span class="tag">本地文件</span><span class="tag">多 Agent</span><span class="tag">视频 3 + 5</span></div>
+          </div>
+        </div>
+
+        <div class="figure-grid">
+          <figure class="shot"><img class="zoomable" src="assets/17_microphone_permission.jpg" alt="QoderWork 请求麦克风权限" loading="lazy"><figcaption><b>18</b><span>首次语音输入会弹出系统麦克风权限。确认应用名称后点击“允许”。</span></figcaption></figure>
+          <figure class="shot"><img class="zoomable" src="assets/18_voice_prompt_ready.jpg" alt="语音内容已转为任务文字" loading="lazy"><figcaption><b>19</b><span>录音结束前先检查转写文本；界面会显示“停止录音（Fn）”。</span></figcaption></figure>
+        </div>
+
+        <div class="prompt-card">
+          <h4>推荐提示词（比录屏原话更安全、结果更稳定）</h4>
+          <p>复制后可按你的目录名调整。明确“只读、不要删除、遇到不确定先询问”，能降低误操作风险。</p>
+          <div class="code-block"><div class="code-label">QoderWork 任务提示词</div><button class="copy-button" type="button">复制</button><pre>扫描我的电脑桌面目录，只读取工作相关文件的文件名和必要文本内容，不要修改、移动或删除任何文件。
+
+请按“项目名称、最近修改、当前进度、下一步待办”整理我的工作内容，并生成一份下周一至周五的工作计划。
+
+遇到无法判断的文件、隐私内容或需要写入操作时，先停下来询问我。</pre></div>
+        </div>
+
+        <div class="step-list">
+          <article class="step"><div><h4>点击输入框旁的麦克风</h4><p>首次使用时允许系统权限。若点了“不允许”，需要到系统隐私设置中重新开启。</p></div><input class="step-check" type="checkbox" aria-label="完成：开启麦克风"></article>
+          <article class="step"><div><h4>说清目标、范围和输出格式</h4><p>录屏原意是“扫描桌面、读取文件、总结工作、生成下周计划”。推荐加上只读限制和结构化字段。</p></div><input class="step-check" type="checkbox" aria-label="完成：输入语音任务"></article>
+          <article class="step"><div><h4>结束录音并校对文字</h4><p>点击结束录音或使用界面提示的 Fn。重点检查路径、项目名、“不要修改”等否定词是否被正确识别。</p></div><input class="step-check" type="checkbox" aria-label="完成：校对转写"></article>
+          <article class="step"><div><h4>发送并观察任务监控</h4><p>AI 先扫描目录，再读取 README、文档、笔记等关键文件，最后综合分析；右侧任务监控会显示大步骤和细分步骤。</p></div><input class="step-check" type="checkbox" aria-label="完成：观察任务拆解"></article>
+          <article class="step"><div><h4>需要时切换到另一个任务</h4><p>左侧任务列表会保留“执行中”状态。录屏证明可以新建别的任务，后台任务继续处理。</p></div><input class="step-check" type="checkbox" aria-label="完成：体验多任务"></article>
+        </div>
+
+        <div class="figure-grid">
+          <figure class="shot"><img class="zoomable" src="assets/19_parallel_agents.jpg" alt="QoderWork 多个 Agent 并行扫描桌面文件夹" loading="lazy"><figcaption><b>20</b><span>多 Agent 并行：分别扫描“工作、端到端课程、我的、临时”等文件夹。</span></figcaption></figure>
+          <figure class="shot"><img class="zoomable" src="assets/20_task_breakdown.jpg" alt="右侧任务监控显示递归目录、读取关键文件和综合分析" loading="lazy"><figcaption><b>21</b><span>任务监控继续细化为：递归列目录 → 读取关键文件 → 综合分析总结。</span></figcaption></figure>
+        </div>
+
+        <div class="callout evidence"><strong>完成状态说明：</strong>视频 3 在周计划最终成稿前切走，因此单看视频 3 只能确认“任务执行中”；视频 5 切回该任务时，才看到生成完成的 Markdown 周计划。</div>
+      </section>
+
+      <section class="chapter" id="local-project" data-section="运行本地项目">
+        <div class="chapter-head">
+          <div class="chapter-no">06</div>
+          <div>
+            <h2>把本地代码文件夹交给 QoderWork 运行</h2>
+            <p class="chapter-intro">关键不是只说“运行它”，而是先把正确的项目根目录作为上下文附加。录屏项目根目录含 package.json，智能体据此判断启动命令。</p>
+            <div class="chapter-meta"><span class="tag">添加文件</span><span class="tag">package.json</span><span class="tag">npm run local</span><span class="tag">视频 3</span></div>
+          </div>
+        </div>
+
+        <div class="callout"><strong>开始前：</strong>如果收到的是压缩包，先解压。选择包含 <code>package.json</code>、README 或项目源码的根文件夹，不要只选某个子文件。</div>
+
+        <div class="figure-grid">
+          <figure class="shot"><img class="zoomable" src="assets/21_add_file_menu.jpg" alt="QoderWork 加号菜单中的添加文件" loading="lazy"><figcaption><b>22</b><span>新任务输入框左下角点 <strong>+</strong>，菜单中选择 <strong>添加文件</strong>。</span></figcaption></figure>
+          <figure class="shot"><img class="zoomable" src="assets/22_choose_project_folder.jpg" alt="macOS 文件选择器中选中项目文件夹" loading="lazy"><figcaption><b>23</b><span>选中项目根目录 <code>aipros-lite-student-release-…</code>，点击右下角“打开”。</span></figcaption></figure>
+          <figure class="shot"><img class="zoomable" src="assets/23_project_attached.jpg" alt="项目文件夹以卡片附加到 QoderWork 输入框" loading="lazy"><figcaption><b>24</b><span>发送前确认输入框里出现文件夹卡片，表示上下文已附加。</span></figcaption></figure>
+          <figure class="shot"><img class="zoomable" src="assets/24_run_project_prompt.jpg" alt="QoderWork 提示词帮我运行这个程序并使用浏览器打开" loading="lazy"><figcaption><b>25</b><span>录屏原提示词：<strong>“帮我运行这个程序，并使用浏览器打开”</strong>。</span></figcaption></figure>
+        </div>
+
+        <div class="prompt-card">
+          <h4>更完整的运行提示词</h4>
+          <div class="code-block"><div class="code-label">带验证和安全约束</div><button class="copy-button" type="button">复制</button><pre>请先阅读这个项目的 README 和 package.json，判断正确的启动方式。
+
+在不修改业务代码的前提下检查本机依赖和端口；如需安装依赖，请先说明将执行的命令。
+
+启动项目后，把实际本地访问地址告诉我，并使用浏览器打开。若失败，请保留完整错误信息并分析根因，不要反复盲目重试。</pre></div>
+        </div>
+
+        <div class="step-list">
+          <article class="step"><div><h4>新建任务并附加项目根目录</h4><p>点击 + → 添加文件 → 选择已解压的项目文件夹 → 打开。确认文件夹卡片出现在输入框。</p></div><input class="step-check" type="checkbox" aria-label="完成：附加项目目录"></article>
+          <article class="step"><div><h4>发送运行请求</h4><p>录屏请求为“帮我运行这个程序，并使用浏览器打开”。发送后任务名自动变为英文 <strong>Run program and open browser</strong>。</p></div><input class="step-check" type="checkbox" aria-label="完成：发送运行请求"></article>
+          <article class="step"><div><h4>确认 AI 读取启动信息</h4><p>录屏中 AI 先列目录、读取 <code>package.json</code>、确认已有 <code>node_modules</code>，再选择 <code>npm run local</code>。</p></div><input class="step-check" type="checkbox" aria-label="完成：确认读取项目配置"></article>
+          <article class="step"><div><h4>观察服务地址和任务监控</h4><p>AI 计划在 <code>localhost:4000</code> 启动，并创建“运行 npm run local”“在浏览器中打开预览页面”两项待办。</p></div><input class="step-check" type="checkbox" aria-label="完成：观察启动计划"></article>
+        </div>
+
+        <figure class="shot figure-wide"><img class="zoomable" src="assets/25_qoderwork_run_plan.jpg" alt="QoderWork 读取 package.json 并决定运行 npm run local" loading="lazy"><figcaption><b>26</b><span>视频 3 末尾：AI 已确定 <code>npm run local</code>，并开始探测 <code>localhost:4000</code>，但浏览器成功页尚未出现。</span></figcaption></figure>
+
+        <div class="callout evidence"><strong>前后衔接：</strong>视频 3 的项目任务仍在启动；视频 4 用 Qoder IDE 再次运行同一项目，随后发现 4000 端口已有旧实例。旧实例很可能来自前一个任务，但这是基于连续画面的合理推断。</div>
+      </section>
+
+      <section class="chapter" id="qoder-ide" data-section="Qoder IDE 自动排错">
+        <div class="chapter-head">
+          <div class="chapter-no">07</div>
+          <div>
+            <h2>在 Qoder IDE 中启动项目，并让 Agent 自动排错</h2>
+            <p class="chapter-intro">这一段展示了真正的闭环：读项目 → 启动 → 捕获端口冲突 → 找到占用进程 → 终止旧实例 → 重启 → 浏览器成功。</p>
+            <div class="chapter-meta"><span class="tag">Run Task</span><span class="tag">端口 4000</span><span class="tag">浏览器验证</span><span class="tag">视频 4</span></div>
+          </div>
+        </div>
+
+        <div class="figure-grid">
+          <figure class="shot"><img class="zoomable" src="assets/26_qoder_ide_welcome.jpg" alt="Qoder IDE 欢迎页，包含打开项目、克隆仓库、SSH 连接" loading="lazy"><figcaption><b>27</b><span>欢迎页：选择 <strong>打开项目</strong>。也可克隆仓库或通过 SSH 连接，但本视频使用本地文件夹。</span></figcaption></figure>
+          <figure class="shot"><img class="zoomable" src="assets/27_qoder_ide_layout.jpg" alt="Qoder IDE 左侧文件树、中间编辑器、右侧 Run Task" loading="lazy"><figcaption><b>28</b><span>项目载入后：左侧文件树，中间编辑器，右侧 Run Task Agent 面板。</span></figcaption></figure>
+        </div>
+
+        <div class="step-list">
+          <article class="step"><div><h4>打开同一个项目根目录</h4><p>在欢迎页点“打开项目”，选中包含 package.json 的项目文件夹并打开。</p></div><input class="step-check" type="checkbox" aria-label="完成：IDE 打开项目"></article>
+          <article class="step"><div><h4>右侧 Run Task 新建会话</h4><p>点击“新会话”，输入“帮我在浏览器上运行这个项目”。</p></div><input class="step-check" type="checkbox" aria-label="完成：新建 Run Task"></article>
+          <article class="step"><div><h4>让 Agent 先读配置再启动</h4><p>AI 判断 <code>npm run local</code> 会安装前后端依赖、初始化数据库、构建并打开浏览器，然后执行命令。</p></div><input class="step-check" type="checkbox" aria-label="完成：读取配置并启动"></article>
+          <article class="step"><div><h4>端口冲突时先识别进程</h4><p>启动失败后，AI 用 <code>lsof</code> 查看 4000 端口，再用 <code>ps</code> 确认 PID 对应的真实命令，判断是旧 AIPROS 实例。</p></div><input class="step-check" type="checkbox" aria-label="完成：识别端口进程"></article>
+          <article class="step"><div><h4>只结束已确认的旧实例</h4><p>视频执行 <code>kill 75636</code>，随后重新运行项目。这个 PID 只属于录屏机器，绝对不要照抄。</p></div><input class="step-check" type="checkbox" aria-label="完成：安全结束旧进程"></article>
+          <article class="step"><div><h4>用浏览器页面验证成功</h4><p>约 108.5 秒浏览器自动打开 <code>localhost:4000/all-skills</code>，显示 AIPROS 的“全部 Skill”页面。这才是可见的成功证据。</p></div><input class="step-check" type="checkbox" aria-label="完成：浏览器验证"></article>
+        </div>
+
+        <div class="figure-grid">
+          <figure class="shot"><img class="zoomable" src="assets/28_qoder_ide_prompt.jpg" alt="Qoder IDE 中输入帮我在浏览器上运行这个项目" loading="lazy"><figcaption><b>29</b><span>右侧新会话中的完整请求：让 Agent 在浏览器运行当前项目。</span></figcaption></figure>
+          <figure class="shot"><img class="zoomable" src="assets/29_one_click_start_explained.jpg" alt="Agent 说明 npm run local 的一键启动作用" loading="lazy"><figcaption><b>30</b><span>Agent 读取说明后，解释 <code>npm run local</code> 会执行完整本地启动流程。</span></figcaption></figure>
+          <figure class="shot"><img class="zoomable" src="assets/30_port_conflict_detected.jpg" alt="Agent 检测 4000 端口占用并执行 lsof" loading="lazy"><figcaption><b>31</b><span>启动失败后不是盲重试，而是用 <code>lsof -i :4000</code> 定位占用者。</span></figcaption></figure>
+          <figure class="shot"><img class="zoomable" src="assets/31_port_conflict_fixed.jpg" alt="Agent 结束旧进程并重新启动 Vite 构建" loading="lazy"><figcaption><b>32</b><span>确认进程后结束旧实例，再启动；画面出现 Vite production build 输出。</span></figcaption></figure>
+        </div>
+
+        <div class="code-block"><div class="code-label">录屏中的 macOS 诊断链（仅供理解，不要照抄 PID）</div><button class="copy-button" type="button">复制</button><pre>lsof -i :4000
+ps -p 75636 -o pid,ppid,command
+kill 75636
+npm run local</pre></div>
+
+        <div class="callout danger"><strong>高风险提醒：</strong>执行 <code>kill</code> 前必须确认进程身份。不要把录屏 PID 75636 用在自己的电脑；Windows 也不要照抄 macOS 命令，应让 Qoder 针对当前系统先检查再处理。</div>
+
+        <figure class="shot figure-wide"><img class="zoomable" src="assets/32_browser_success.jpg" alt="localhost 4000 all-skills 页面成功打开，显示 184 条 Skill" loading="lazy"><figcaption><b>33</b><span>成功证据：浏览器打开 <code>localhost:4000/all-skills</code>，页面显示“全部 Skill”、184 条，以及“我的 Skill / 上传 Skill / API 接入”。</span></figcaption></figure>
+
+        <h3><code>npm run dev</code> 和 <code>npm run local</code> 不要混淆</h3>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>命令</th><th>录屏观察</th><th>地址</th><th>说明</th></tr></thead>
+            <tbody>
+              <tr><td><strong>npm run dev</strong></td><td>已有历史任务先安装依赖，再启动 Vite 开发服务</td><td><code>localhost:5180</code></td><td>偏前端开发服务</td></tr>
+              <tr><td><strong>npm run local</strong></td><td>一键处理更完整的本地系统流程</td><td><code>localhost:4000/all-skills</code></td><td>本视频最终成功路径</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="chapter" id="cli" data-section="安装 / 升级 CLI">
+        <div class="chapter-head">
+          <div class="chapter-no">08</div>
+          <div>
+            <h2>安装或升级 Qoder CN CLI</h2>
+            <p class="chapter-intro">有两条路：官网复制官方命令；或让 QoderWork 先检查环境、包名和版本，再代为安装。视频 5 实际完成的是第二条。</p>
+            <div class="chapter-meta"><span class="tag">qodercli</span><span class="tag">@qoder-ai/qodercli</span><span class="tag">npm</span><span class="tag">视频 1 + 5</span></div>
+          </div>
+        </div>
+
+        <div class="figure-grid">
+          <figure class="shot"><img class="zoomable" src="assets/33_cli_menu_entry.jpg" alt="Qoder 中国站顶部产品菜单中的 CLI 入口" loading="lazy"><figcaption><b>34</b><span>官网路径：顶部 <strong>Qoder</strong> 菜单 → <strong>CLI</strong>。</span></figcaption></figure>
+          <figure class="shot"><img class="zoomable" src="assets/34_cli_system_options.jpg" alt="Qoder CN CLI 页面显示 Mac Linux PowerShell CMD 三种命令" loading="lazy"><figcaption><b>35</b><span>CLI 页面按系统提供 MacOS/Linux、Windows PowerShell、Windows CMD 命令。</span></figcaption></figure>
+          <figure class="shot"><img class="zoomable" src="assets/35_copy_macos_command.jpg" alt="MacOS Linux 命令复制成功" loading="lazy"><figcaption><b>36</b><span>点击命令右侧复制按钮，出现勾选表示已复制。</span></figcaption></figure>
+          <figure class="shot"><img class="zoomable" src="assets/44_terminal_command_safe.jpg" alt="Mac 终端中粘贴 Qoder CLI 安装命令，用户名已遮盖" loading="lazy"><figcaption><b>37</b><span>视频 1 只展示把命令粘贴到终端；画面未展示按回车后的安装输出。</span></figcaption></figure>
+        </div>
+
+        <h3>官网所示命令</h3>
+        <div class="code-block"><div class="code-label">MacOS / Linux</div><button class="copy-button" type="button">复制</button><pre>curl -fsSL https://qoder.com.cn/install | bash</pre></div>
+        <div class="code-block"><div class="code-label">Windows PowerShell</div><button class="copy-button" type="button">复制</button><pre>irm https://qoder.com.cn/install.ps1 | iex</pre></div>
+        <div class="callout warning"><strong>Windows CMD：</strong>录屏中的命令被画面截断，本教程不凭空补写。请在你当前官网页面点击 CMD 命令右侧复制按钮。</div>
+
+        <h3>更推荐：让 QoderWork 检查后再安装</h3>
+        <div class="prompt-card">
+          <h4>安装 / 升级提示词</h4>
+          <div class="code-block"><div class="code-label">QoderWork</div><button class="copy-button" type="button">复制</button><pre>帮我安装 Qoder 国内版本的 CLI。
+
+请先检查当前是否已经安装、当前版本号和可执行文件路径；确认国内版官方包名和最新版本后，再执行安装或升级。
+
+完成后重新输出版本号和路径，并告诉我验证是否通过。</pre></div>
+        </div>
+
+        <div class="figure-grid">
+          <figure class="shot"><img class="zoomable" src="assets/37_install_cli_prompt.jpg" alt="QoderWork 输入帮我安装 qoder 国内版本的 CLI" loading="lazy"><figcaption><b>38</b><span>新任务提示词。发送后 AI 进行需求对齐、深度思考和环境检查。</span></figcaption></figure>
+          <figure class="shot"><img class="zoomable" src="assets/38_parallel_task_switch.jpg" alt="QoderWork 在 CLI 安装任务运行时切换查看周计划" loading="lazy"><figcaption><b>39</b><span>安装任务可在后台继续；操作者切到已完成的“生成下周工作计划”查看 Markdown。</span></figcaption></figure>
+        </div>
+
+        <div class="step-list">
+          <article class="step"><div><h4>检查当前安装</h4><p>AI 先执行版本检查，录屏发现当前 <code>qodercli</code> 为 <strong>1.0.48</strong>。</p></div><input class="step-check" type="checkbox" aria-label="完成：检查 CLI 版本"></article>
+          <article class="step"><div><h4>确认国内版包名与最新版本</h4><p>录屏确认 npm 包是 <code>@qoder-ai/qodercli</code>，当时 npm 最新版本为 <strong>1.1.3</strong>。</p></div><input class="step-check" type="checkbox" aria-label="完成：确认包名和版本"></article>
+          <article class="step"><div><h4>执行全局升级</h4><p>AI 执行 <code>npm install -g @qoder-ai/qodercli@latest</code>，并在右侧创建“升级”“验证”两项待办。</p></div><input class="step-check" type="checkbox" aria-label="完成：升级 CLI"></article>
+          <article class="step"><div><h4>验证版本与路径</h4><p>安装后再次运行 <code>qodercli --version</code> 和 <code>which qodercli</code>。视频末尾命令与待办均显示绿色完成。</p></div><input class="step-check" type="checkbox" aria-label="完成：验证 CLI"></article>
+        </div>
+
+        <div class="figure-grid">
+          <figure class="shot"><img class="zoomable" src="assets/39_cli_version_comparison.jpg" alt="QoderWork 显示当前 Qoder CLI 1.0.48 和 npm 最新 1.1.3" loading="lazy"><figcaption><b>40</b><span>环境检查结果：已安装 1.0.48；录屏时 npm 最新 1.1.3。</span></figcaption></figure>
+          <figure class="shot"><img class="zoomable" src="assets/40_cli_upgrade_command.jpg" alt="QoderWork 执行 npm install 全局升级 Qoder CLI" loading="lazy"><figcaption><b>41</b><span>实际升级命令：<code>npm install -g @qoder-ai/qodercli@latest</code>。</span></figcaption></figure>
+          <figure class="shot"><img class="zoomable" src="assets/41_cli_verification_complete.jpg" alt="Qoder CLI 安装验证命令和待办全部完成" loading="lazy"><figcaption><b>42</b><span>版本与路径验证完成，右侧“升级 / 验证”待办均为绿色。</span></figcaption></figure>
+          <figure class="shot"><img class="zoomable" src="assets/36_terminal_pasted_command.jpg" alt="Mac 终端中粘贴 Qoder CLI curl 安装命令" loading="lazy"><figcaption><b>43</b><span>另一条路径是手动终端安装；使用前仍应从当前官网复制，不要依赖过期截图。</span></figcaption></figure>
+        </div>
+
+        <div class="code-block"><div class="code-label">录屏中 QoderWork 执行的核心命令</div><button class="copy-button" type="button">复制</button><pre>qodercli --version
+npm install -g @qoder-ai/qodercli@latest 2>&1
+qodercli --version 2>&1; which qodercli</pre></div>
+
+        <div class="callout evidence"><strong>最终表述要准确：</strong>画面清楚显示升级命令、验证命令和待办均成功；但视频在最终文字总结完全展开前切走。因此可以说“升级与验证步骤显示成功”，不应声称最后一行版本输出在画面中清晰展示。</div>
+      </section>
+
+      <section class="chapter" id="troubleshooting" data-section="排错手册">
+        <div class="chapter-head">
+          <div class="chapter-no">09</div>
+          <div>
+            <h2>遇到问题时，按根因排查</h2>
+            <p class="chapter-intro">视频最有价值的部分不是“点了哪些按钮”，而是遇到环境问题后保留错误、检查真实状态，再执行最小修复。</p>
+            <div class="chapter-meta"><span class="tag">不盲重试</span><span class="tag">先检查后修复</span><span class="tag">安全边界</span></div>
+          </div>
+        </div>
+
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>现象</th><th>最可能原因</th><th>处理顺序</th><th>成功标准</th></tr></thead>
+            <tbody>
+              <tr><td><strong>安装包打不开</strong></td><td>Mac 芯片架构选错，或 Windows 安装范围不合适</td><td>确认 Intel / Apple Silicon；Windows 个人电脑先试 X64 User</td><td>客户端可正常启动</td></tr>
+              <tr><td><strong>网站登录了，客户端仍未登录</strong></td><td>浏览器未把状态回传给应用</td><td>回客户端重发登录 → 允许“打开 QoderWork CN”</td><td>进入“不止聊天，搞定一切”工作台</td></tr>
+              <tr><td><strong>语音没有文字</strong></td><td>麦克风权限被拒绝或输入设备不对</td><td>系统隐私设置开启权限 → 重启应用 → 再录一小句</td><td>输入框出现可编辑转写文本</td></tr>
+              <tr><td><strong>AI 读不到项目</strong></td><td>附加了错误子目录或压缩包未解压</td><td>解压 → 选择含 package.json / README 的根目录 → 确认文件夹卡片</td><td>AI 能列目录并读取启动配置</td></tr>
+              <tr><td><strong>启动时报端口占用</strong></td><td>旧服务仍在运行</td><td>检查端口 → 确认进程命令 → 只结束已确认旧实例 → 重启</td><td>本地 URL 可访问</td></tr>
+              <tr><td><strong>CLI 安装后仍是旧版本</strong></td><td>全局包未升级、PATH 指向旧位置</td><td>查当前版本与路径 → 确认包名 → 升级 → 再次验证</td><td>版本与可执行路径均符合预期</td></tr>
+              <tr><td><strong>任务执行一半 Credits 不足</strong></td><td>余额不足或高倍率模型消耗较快</td><td>打开“我的用量” → 查看两类 Credits → 调整模型或订阅</td><td>任务可继续且余额变化可解释</td></tr>
+              <tr><td><strong>项目运行了但浏览器没打开</strong></td><td>自动打开失败，但服务可能已启动</td><td>让 Agent 报告实际 URL → 手动访问 → 检查服务日志</td><td>页面可访问，而不是只看命令绿色状态</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3>把错误交给 Qoder 的正确方式</h3>
+        <div class="prompt-card">
+          <h4>诊断提示词</h4>
+          <div class="code-block"><div class="code-label">遇到错误时复制</div><button class="copy-button" type="button">复制</button><pre>这个任务遇到了问题。请先保留并读取完整错误信息，不要立刻重复执行同一命令。
+
+请按以下顺序处理：
+1. 说明失败发生在哪一步；
+2. 检查当前系统、依赖、端口和相关进程；
+3. 给出根因判断和证据；
+4. 在执行可能终止进程、覆盖文件或修改环境的操作前先询问我；
+5. 修复后用可见结果验证，而不只看命令返回成功。</pre></div>
+        </div>
+
+        <div class="card-grid">
+          <article class="info-card"><h4>文件安全</h4><ul class="checklist"><li>先读后写</li><li>限制在指定项目目录</li><li>删除、覆盖、移动前确认</li><li>敏感文件不上传、不截图</li></ul></article>
+          <article class="info-card"><h4>命令安全</h4><ul class="checklist"><li>不照抄录屏 PID</li><li>先识别进程再 kill</li><li>保留完整错误输出</li><li>安装后验证版本与路径</li></ul></article>
+          <article class="info-card"><h4>任务验证</h4><ul class="checklist"><li>“执行中”不等于完成</li><li>待办变绿只是一个信号</li><li>项目必须以页面可访问验证</li><li>生成物应实际打开检查</li></ul></article>
+          <article class="info-card"><h4>成本控制</h4><ul class="checklist"><li>大任务前看 Credits</li><li>确认模型实时倍率</li><li>避免重复发起同一任务</li><li>并行 Agent 会增加工作量</li></ul></article>
+        </div>
+      </section>
+
+      <section class="chapter" id="video-index" data-section="时间轴与附录">
+        <div class="chapter-head">
+          <div class="chapter-no">10</div>
+          <div>
+            <h2>视频时间轴、提示词与验收清单</h2>
+            <p class="chapter-intro">需要回看原视频时，用下表快速定位。文件名保留原始哈希，避免混淆顺序。</p>
+            <div class="chapter-meta"><span class="tag">索引</span><span class="tag">提示词</span><span class="tag">验收</span></div>
+          </div>
+        </div>
+
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>顺序</th><th>原文件</th><th>时长</th><th>关键时间点</th></tr></thead>
+            <tbody>
+              <tr><td><strong>视频 1</strong></td><td><code>c704462ca7ed…aa9b.mp4</code></td><td>03:00</td><td>00:44 中国站；00:52 下载页；01:35 登录；02:30 手机表单</td></tr>
+              <tr><td><strong>视频 2</strong></td><td><code>bfdbe24db709…1daa.mp4</code></td><td>02:59</td><td>01:05 打开客户端；01:36 套餐卡；02:06 用量；02:30 模型菜单</td></tr>
+              <tr><td><strong>视频 3</strong></td><td><code>c570541dfecd…5bfe.mp4</code></td><td>03:00</td><td>00:18 麦克风；01:04 多 Agent；02:06 添加文件；02:59 启动探测</td></tr>
+              <tr><td><strong>视频 4</strong></td><td><code>00813d752b73…62f6.mp4</code></td><td>02:07</td><td>00:33 打开项目；01:14 提示词；01:38 端口冲突；01:50 浏览器成功</td></tr>
+              <tr><td><strong>视频 5</strong></td><td><code>2ea76ac20143…7fa.mp4</code></td><td>02:32</td><td>00:18 CLI 页；01:14 安装提示；02:01 版本比较；02:27 验证完成</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3>四个可直接复用的提示词</h3>
+        <div class="prompt-grid">
+          <article class="prompt-card"><h4>整理工作并做周计划</h4><div class="code-block"><button class="copy-button" type="button">复制</button><pre>只读扫描指定工作目录，按项目、进度、最近修改和待办整理，并生成下周一至周五计划。任何写入或不确定内容先询问我。</pre></div></article>
+          <article class="prompt-card"><h4>运行本地项目</h4><div class="code-block"><button class="copy-button" type="button">复制</button><pre>先读 README 和 package.json 判断启动方式；检查依赖和端口后运行，并把实际本地 URL 告诉我和用浏览器打开。</pre></div></article>
+          <article class="prompt-card"><h4>诊断端口冲突</h4><div class="code-block"><button class="copy-button" type="button">复制</button><pre>检查目标端口的占用进程和真实命令。确认它是本项目旧实例后再询问我是否结束；不要使用示例 PID。</pre></div></article>
+          <article class="prompt-card"><h4>安装 / 升级 CLI</h4><div class="code-block"><button class="copy-button" type="button">复制</button><pre>先检查 qodercli 当前版本和路径，确认国内版包名及最新版本，再升级；完成后重新输出版本和路径并验证。</pre></div></article>
+        </div>
+
+        <h3>最终验收清单</h3>
+        <div class="card-grid">
+          <article class="info-card"><h4>账号与界面</h4><ul class="checklist"><li>能从中国站进入正确产品</li><li>客户端显示工作台而非欢迎页</li><li>能打开“我的用量”</li><li>能切换模型并看到倍率</li></ul></article>
+          <article class="info-card"><h4>任务与文件</h4><ul class="checklist"><li>语音能转成正确文字</li><li>右侧能看到任务拆解</li><li>项目根目录已正确附加</li><li>AI 能读取 package.json</li></ul></article>
+          <article class="info-card"><h4>项目运行</h4><ul class="checklist"><li>知道 dev 与 local 的差异</li><li>端口冲突能先识别进程</li><li>不照抄视频 PID</li><li>浏览器能打开真实页面</li></ul></article>
+          <article class="info-card"><h4>CLI</h4><ul class="checklist"><li>知道从官网复制系统命令</li><li>能查 qodercli 版本</li><li>知道国内版 npm 包名</li><li>升级后再次验证路径与版本</li></ul></article>
+        </div>
+
+        <h3>术语速查</h3>
+        <div class="glossary-grid">
+          <article class="glossary-card"><h4>Credits</h4><p>任务执行的资源额度。套餐内和资源包可能分别统计，并各有有效期。</p></article>
+          <article class="glossary-card"><h4>倍率</h4><p>模型菜单右侧的相对消耗系数；促销时可能很低，随时可能变化。</p></article>
+          <article class="glossary-card"><h4>任务监控</h4><p>右侧展示高层任务、待办、产物、默认工作目录以及技能与 MCP。</p></article>
+          <article class="glossary-card"><h4>工作目录</h4><p>智能体执行文件与命令操作的范围。选择错目录会让它读不到项目。</p></article>
+          <article class="glossary-card"><h4>Run Task</h4><p>Qoder IDE 右侧的 Agent 会话，用于理解项目、执行命令和排错。</p></article>
+          <article class="glossary-card"><h4>可见验证</h4><p>不只看“命令成功”，还要打开生成物、访问页面、检查版本或路径。</p></article>
+        </div>
+
+        <div class="callout"><strong>建议保存方式：</strong>在线阅读时直接收藏本页即可；如需离线保存，应同时保留 HTML、<code>assets</code> 与 <code>media</code> 文件夹。打印时会自动隐藏播放器，并保留课程目录与全部图文步骤。</div>
+      </section>
+    </main>
+  </div>
+
+  <footer class="footer">
+    <strong>Qoder / QoderWork CN 完整视频＋图文教程</strong>
+    <span>5 段原始录屏可在线播放 · 44 张关键截图均已脱敏 · 2026-07-23</span>
+  </footer>
+
+  <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="截图预览">
+    <button class="lightbox-close" type="button" aria-label="关闭预览">×</button>
+    <div class="lightbox-inner"><img src="assets/32_browser_success.jpg" alt="截图预览"><p></p></div>
+  </div>
+
+  <script>
+    (() => {
+      const bar = document.getElementById('readingBar');
+      const sections = [...document.querySelectorAll('.chapter')];
+      const tocLinks = [...document.querySelectorAll('.toc a')];
+      const tocProgress = document.getElementById('tocProgress');
+      const tocMeter = document.getElementById('tocMeter');
+      const checks = [...document.querySelectorAll('.step-check')];
+      const modeButtons = [...document.querySelectorAll('.mode-button[data-mode]')];
+      const storageKey = 'qoder-tutorial-progress-v1';
+      const modeStorageKey = 'qoder-tutorial-reading-mode-v2';
+      let readingMode = 'compact';
+      try { readingMode = localStorage.getItem(modeStorageKey) || 'compact'; } catch (_) {}
+
+      function updateReading() {
+        const max = document.documentElement.scrollHeight - innerHeight;
+        const progress = max > 0 ? scrollY / max : 0;
+        bar.style.width = `${Math.min(100, Math.max(0, progress * 100))}%`;
+      }
+
+      function updateChecks() {
+        const done = checks.filter(c => c.checked).length;
+        const pct = checks.length ? Math.round(done / checks.length * 100) : 0;
+        tocProgress.textContent = `${done} / ${checks.length}`;
+        tocMeter.style.width = `${pct}%`;
+        try { localStorage.setItem(storageKey, JSON.stringify(checks.map(c => c.checked))); } catch (_) {}
+      }
+
+      try {
+        const saved = JSON.parse(localStorage.getItem(storageKey) || '[]');
+        checks.forEach((c, i) => c.checked = Boolean(saved[i]));
+      } catch (_) {}
+      checks.forEach(c => c.addEventListener('change', updateChecks));
+      updateChecks();
+
+      function setCollapsed(section, collapsed) {
+        section.classList.toggle('collapsed', collapsed);
+        if (collapsed) section.querySelectorAll('video').forEach(video => video.pause());
+        const toggle = section.querySelector(':scope > .chapter-head .chapter-toggle');
+        if (toggle) {
+          toggle.textContent = collapsed ? '展开' : '收起';
+          toggle.setAttribute('aria-expanded', String(!collapsed));
+          toggle.setAttribute('aria-label', `${collapsed ? '展开' : '收起'}：${section.dataset.section}`);
+        }
+      }
+
+      function openSection(section) {
+        if (readingMode === 'compact') {
+          sections.forEach(item => { if (item !== section) setCollapsed(item, true); });
+        }
+        setCollapsed(section, false);
+        requestAnimationFrame(updateReading);
+      }
+
+      sections.forEach(section => {
+        const head = section.querySelector(':scope > .chapter-head');
+        if (!head) return;
+        const body = document.createElement('div');
+        body.className = 'chapter-body';
+        body.id = `${section.id}-body`;
+        while (head.nextSibling) body.appendChild(head.nextSibling);
+        section.appendChild(body);
+
+        const toggle = document.createElement('button');
+        toggle.type = 'button';
+        toggle.className = 'chapter-toggle';
+        toggle.setAttribute('aria-controls', body.id);
+        head.appendChild(toggle);
+        const toggleCurrent = () => {
+          const willOpen = section.classList.contains('collapsed');
+          if (willOpen) openSection(section);
+          else setCollapsed(section, true);
+        };
+        toggle.addEventListener('click', event => { event.stopPropagation(); toggleCurrent(); });
+        head.addEventListener('click', event => {
+          if (event.target.closest('a, button, input')) return;
+          toggleCurrent();
+        });
+        setCollapsed(section, readingMode === 'compact');
+      });
+
+      function getReadingAnchor() {
+        const offset = 132;
+        const marker = document.elementFromPoint(Math.round(innerWidth * .68), Math.min(220, Math.round(innerHeight * .28)));
+        const markerSection = marker?.closest('.chapter');
+        if (markerSection) return { section: markerSection, marker };
+        const measured = sections.map(section => ({ section, rect: section.getBoundingClientRect() }));
+        const section = measured.find(item => item.rect.top <= offset && item.rect.bottom > offset)?.section
+          || measured.filter(item => item.rect.bottom > 0).sort((a, b) => Math.abs(a.rect.top - offset) - Math.abs(b.rect.top - offset))[0]?.section
+          || null;
+        return section ? { section, marker: section } : null;
+      }
+
+      function setMode(mode, persist = true, initial = false) {
+        const nextMode = mode === 'full' ? 'full' : 'compact';
+        if (!initial && nextMode === readingMode) return;
+        const anchor = initial ? null : getReadingAnchor();
+        const oldTop = anchor?.marker.getBoundingClientRect().top;
+        readingMode = nextMode;
+        if (readingMode === 'full') sections.forEach(section => setCollapsed(section, false));
+        else {
+          sections.forEach(section => setCollapsed(section, true));
+          if (anchor) setCollapsed(anchor.section, false);
+        }
+        modeButtons.forEach(button => {
+          const active = button.dataset.mode === readingMode;
+          button.classList.toggle('active', active);
+          button.setAttribute('aria-pressed', String(active));
+        });
+        if (persist) {
+          try { localStorage.setItem(modeStorageKey, readingMode); } catch (_) {}
+        }
+        requestAnimationFrame(() => requestAnimationFrame(() => {
+          if (anchor && Number.isFinite(oldTop)) {
+            const newTop = anchor.marker.getBoundingClientRect().top;
+            const root = document.documentElement;
+            const previousBehavior = root.style.scrollBehavior;
+            root.style.scrollBehavior = 'auto';
+            scrollBy(0, newTop - oldTop);
+            root.style.scrollBehavior = previousBehavior;
+          }
+          updateReading();
+        }));
+      }
+      modeButtons.forEach(button => button.addEventListener('click', () => setMode(button.dataset.mode)));
+      document.querySelector('.print-button')?.addEventListener('click', () => window.print());
+      setMode(readingMode, false, true);
+
+      const courseLessons = [
+        {
+          src: 'media/lesson-01-entry-download-login.mp4',
+          poster: 'assets/06_qoder_product_menu.jpg',
+          duration: '03:00',
+          title: '找到正确入口：官网、下载与注册',
+          summary: '从国际站进入中国站，辨认 QoderWork、Desktop 和 CLI，选择正确安装包并进入注册登录。',
+          topics: ['产品入口', '安装包选择', '注册登录'],
+          links: [['#versions', '认识三个入口'], ['#download', '查看下载步骤'], ['#login', '查看登录步骤']]
+        },
+        {
+          src: 'media/lesson-02-account-credits-models.mp4',
+          poster: 'assets/15_credit_usage.jpg',
+          duration: '02:59',
+          title: '完成登录：套餐、Credits 与模型',
+          summary: '完成浏览器回跳客户端，认识工作台，查看套餐、资源额度，以及不同模型的实时消耗倍率。',
+          topics: ['浏览器回跳', '订阅套餐', 'Credits', '模型倍率'],
+          links: [['#login', '复习登录流程'], ['#credits', '查看 Credits 与模型']]
+        },
+        {
+          src: 'media/lesson-03-voice-agents-local-project.mp4',
+          poster: 'assets/19_parallel_agents.jpg',
+          duration: '03:00',
+          title: '让 Agent 开始工作：语音、多任务与本地项目',
+          summary: '用语音生成周计划，观察多 Agent 并行工作，再附加本地代码项目并让智能体尝试启动。',
+          topics: ['语音输入', '多 Agent', '本地文件', '运行项目'],
+          links: [['#voice-task', '查看语音与 Agent'], ['#local-project', '查看项目运行步骤']]
+        },
+        {
+          src: 'media/lesson-04-qoder-ide-debugging.mp4',
+          poster: 'assets/32_browser_success.jpg',
+          duration: '02:07',
+          title: '从失败到跑通：Qoder IDE 自动排错',
+          summary: '在 Qoder IDE 运行项目，识别 4000 端口冲突，确认并结束旧进程，最后在浏览器验证真实结果。',
+          topics: ['Qoder IDE', '端口冲突', '进程检查', '浏览器验证'],
+          links: [['#qoder-ide', '查看 IDE 全流程'], ['#troubleshooting', '打开排错手册']]
+        },
+        {
+          src: 'media/lesson-05-qoder-cli-upgrade.mp4',
+          poster: 'assets/07_cli_install_commands.jpg',
+          duration: '02:32',
+          title: '把能力带到终端：安装或升级 Qoder CLI',
+          summary: '检查当前版本和路径，确认国内版 npm 包，执行全局升级，并用版本与路径完成最终验证。',
+          topics: ['Qoder CLI', 'npm 全局安装', '版本检查', '路径验证'],
+          links: [['#cli', '查看 CLI 操作步骤'], ['#video-index', '打开时间轴与附录']]
+        }
+      ];
+      const courseVideo = document.getElementById('courseVideo');
+      const courseSource = document.getElementById('courseVideoSource');
+      const episodeButtons = [...document.querySelectorAll('.episode[data-lesson]')];
+      const courseCount = document.getElementById('courseCount');
+      const courseDuration = document.getElementById('courseDuration');
+      const courseTitle = document.getElementById('courseTitle');
+      const courseSummary = document.getElementById('courseSummary');
+      const courseTopics = document.getElementById('courseTopics');
+      const courseLinks = document.getElementById('courseLinks');
+      const coursePrev = document.getElementById('coursePrev');
+      const courseNext = document.getElementById('courseNext');
+      let activeLesson = 0;
+
+      function selectCourseLesson(index, scrollToPlayer = false) {
+        const nextIndex = Math.min(courseLessons.length - 1, Math.max(0, index));
+        const lesson = courseLessons[nextIndex];
+        const sourceChanged = activeLesson !== nextIndex || courseSource.getAttribute('src') !== lesson.src;
+        activeLesson = nextIndex;
+        if (sourceChanged) {
+          courseVideo.pause();
+          courseSource.src = lesson.src;
+          courseVideo.poster = lesson.poster;
+          courseVideo.load();
+        }
+        courseCount.textContent = `已选择 · ${String(nextIndex + 1).padStart(2, '0')} / 05`;
+        courseDuration.textContent = lesson.duration;
+        courseTitle.textContent = lesson.title;
+        courseSummary.textContent = lesson.summary;
+        courseTopics.replaceChildren(...lesson.topics.map(topic => {
+          const span = document.createElement('span');
+          span.textContent = topic;
+          return span;
+        }));
+        courseLinks.replaceChildren(...lesson.links.map(([href, label]) => {
+          const link = document.createElement('a');
+          link.href = href;
+          link.textContent = label;
+          return link;
+        }));
+        episodeButtons.forEach((button, buttonIndex) => {
+          const active = buttonIndex === nextIndex;
+          button.classList.toggle('active', active);
+          button.setAttribute('aria-pressed', String(active));
+        });
+        coursePrev.disabled = nextIndex === 0;
+        courseNext.disabled = nextIndex === courseLessons.length - 1;
+        if (scrollToPlayer && innerWidth <= 760) {
+          const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
+          document.querySelector('.video-stage')?.scrollIntoView({ block: 'start', behavior: reducedMotion ? 'auto' : 'smooth' });
+        }
+      }
+      episodeButtons.forEach(button => button.addEventListener('click', () => selectCourseLesson(Number(button.dataset.lesson), true)));
+      coursePrev?.addEventListener('click', () => selectCourseLesson(activeLesson - 1));
+      courseNext?.addEventListener('click', () => selectCourseLesson(activeLesson + 1));
+      courseVideo?.addEventListener('play', () => {
+        courseCount.textContent = `播放中 · ${String(activeLesson + 1).padStart(2, '0')} / 05`;
+      });
+      courseVideo?.addEventListener('pause', () => {
+        if (!courseVideo.ended) courseCount.textContent = `已暂停 · ${String(activeLesson + 1).padStart(2, '0')} / 05`;
+      });
+      courseVideo?.addEventListener('ended', () => {
+        courseCount.textContent = `本课完成 · ${String(activeLesson + 1).padStart(2, '0')} / 05`;
+      });
+
+      function navigateToChapter(target, updateHash = true) {
+        if (!target?.classList.contains('chapter')) return;
+        openSection(target);
+        if (updateHash && location.hash !== `#${target.id}`) history.pushState(null, '', `#${target.id}`);
+        requestAnimationFrame(() => requestAnimationFrame(() => {
+          const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
+          target.scrollIntoView({ block: 'start', behavior: reducedMotion ? 'auto' : 'smooth' });
+        }));
+      }
+      if (location.hash) navigateToChapter(document.querySelector(location.hash), false);
+      addEventListener('hashchange', () => navigateToChapter(document.querySelector(location.hash), false));
+
+      const observer = new IntersectionObserver(entries => {
+        const visible = entries.filter(e => e.isIntersecting).sort((a,b) => b.intersectionRatio - a.intersectionRatio)[0];
+        if (!visible) return;
+        const id = visible.target.id;
+        tocLinks.forEach(a => a.classList.toggle('active', a.getAttribute('href') === `#${id}`));
+        document.getElementById('mobileToc').textContent = `目录：${visible.target.dataset.section} ↓`;
+      }, { rootMargin: '-18% 0px -66% 0px', threshold: [0, .1, .3] });
+      sections.forEach(s => observer.observe(s));
+
+      const mobileToc = document.getElementById('mobileToc');
+      const mobileDrawer = document.createElement('div');
+      mobileDrawer.className = 'mobile-drawer';
+      mobileDrawer.id = 'mobileDrawer';
+      mobileDrawer.setAttribute('role', 'dialog');
+      mobileDrawer.setAttribute('aria-modal', 'true');
+      mobileDrawer.setAttribute('aria-label', '教程目录');
+      mobileDrawer.setAttribute('aria-hidden', 'true');
+      mobileDrawer.innerHTML = `<button class="mobile-drawer-close" type="button" aria-label="关闭目录">×</button><nav aria-label="移动端教程目录">${document.querySelector('.toc nav').innerHTML}</nav>`;
+      document.body.appendChild(mobileDrawer);
+      mobileToc.setAttribute('aria-controls', mobileDrawer.id);
+      mobileToc.setAttribute('aria-expanded', 'false');
+      const closeDrawer = (restoreFocus = true) => {
+        const wasOpen = mobileDrawer.classList.contains('open');
+        mobileDrawer.classList.remove('open');
+        mobileDrawer.setAttribute('aria-hidden', 'true');
+        mobileToc.setAttribute('aria-expanded', 'false');
+        document.body.style.overflow = '';
+        if (wasOpen && restoreFocus) mobileToc.focus();
+      };
+      mobileToc.addEventListener('click', () => {
+        mobileDrawer.classList.add('open');
+        mobileDrawer.setAttribute('aria-hidden', 'false');
+        mobileToc.setAttribute('aria-expanded', 'true');
+        document.body.style.overflow = 'hidden';
+        mobileDrawer.querySelector('.mobile-drawer-close').focus();
+      });
+      mobileDrawer.querySelector('.mobile-drawer-close').addEventListener('click', () => closeDrawer());
+      mobileDrawer.addEventListener('click', event => {
+        const link = event.target.closest('a[href^="#"]');
+        if (!link) return;
+        event.preventDefault();
+        const target = document.querySelector(link.getAttribute('href'));
+        closeDrawer(false);
+        navigateToChapter(target);
+      });
+
+      document.addEventListener('click', event => {
+        const link = event.target.closest('a[href^="#"]');
+        if (!link || link.closest('.mobile-drawer')) return;
+        const target = document.querySelector(link.getAttribute('href'));
+        if (target?.classList.contains('chapter')) {
+          event.preventDefault();
+          navigateToChapter(target);
+        }
+      });
+
+      document.querySelectorAll('.copy-button').forEach(button => {
+        button.addEventListener('click', async () => {
+          const text = button.parentElement.querySelector('pre').innerText;
+          try {
+            await navigator.clipboard.writeText(text);
+            const old = button.textContent;
+            button.textContent = '已复制';
+            setTimeout(() => button.textContent = old, 1300);
+          } catch (_) {
+            const selection = getSelection();
+            const range = document.createRange();
+            range.selectNodeContents(button.parentElement.querySelector('pre'));
+            selection.removeAllRanges(); selection.addRange(range);
+          }
+        });
+      });
+
+      const lightbox = document.getElementById('lightbox');
+      const lightboxImg = lightbox.querySelector('img');
+      const lightboxText = lightbox.querySelector('p');
+      let lightboxTrigger = null;
+      function openLightbox(img) {
+        lightboxTrigger = img;
+        lightboxImg.src = img.src;
+        lightboxImg.alt = img.alt;
+        lightboxText.textContent = img.closest('figure')?.querySelector('figcaption')?.innerText || img.alt;
+        lightbox.classList.add('open');
+        document.body.style.overflow = 'hidden';
+        lightbox.querySelector('button').focus();
+      }
+      function closeLightbox() {
+        const wasOpen = lightbox.classList.contains('open');
+        lightbox.classList.remove('open');
+        document.body.style.overflow = '';
+        lightboxImg.src = '';
+        if (wasOpen) lightboxTrigger?.focus();
+      }
+      document.querySelectorAll('.zoomable').forEach(img => {
+        img.tabIndex = 0;
+        img.addEventListener('click', () => openLightbox(img));
+        img.addEventListener('keydown', e => {
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            openLightbox(img);
+          }
+        });
+      });
+      lightbox.addEventListener('click', e => { if (e.target === lightbox || e.target.closest('.lightbox-close')) closeLightbox(); });
+      addEventListener('keydown', e => {
+        if (e.key === 'Escape') { closeLightbox(); closeDrawer(); }
+        if (e.key === 'Tab' && lightbox.classList.contains('open')) {
+          e.preventDefault();
+          lightbox.querySelector('.lightbox-close').focus();
+        } else if (e.key === 'Tab' && mobileDrawer.classList.contains('open')) {
+          const focusable = [...mobileDrawer.querySelectorAll('button, a[href]')];
+          const first = focusable[0];
+          const last = focusable[focusable.length - 1];
+          if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+          else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+        }
+      });
+      addEventListener('beforeprint', () => {
+        document.querySelectorAll('video').forEach(video => video.pause());
+        document.querySelectorAll('img').forEach(img => img.loading = 'eager');
+        document.querySelectorAll('details').forEach(item => item.open = true);
+      });
+      addEventListener('scroll', updateReading, { passive: true });
+      addEventListener('resize', updateReading);
+      updateReading();
+    })();
+  </script>
+</body>
+</html>
